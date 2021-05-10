@@ -1,0 +1,1130 @@
+.login-box11{
+    height: 300px;
+    width: 50%;
+    background-color: #062c33;
+}
+
+
+ul li a{
+	font-size: 20px;
+	padding-left: 5px;
+	border-radius: 8px;
+	color: black;
+}
+
+.display-2{color:black;}
+.carousel-item h3{color:black;}
+.welcome a input[type=button]{font-size: 20px;}
+/*---logo----*/
+.logo img{
+	height: 80px;
+	width: 100%;
+	border-radius: 8px;
+}
+/*---logo end----*/
+
+/*------search bar-----*/
+.search-box{
+	border-radius: 40px;
+	height: 30px;
+}
+
+.search-box:hover>.search-txt{
+	width: 240px;
+	padding: 0 6px;
+}
+
+.search-btn{
+	color:#e84118;
+	float: right;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: #2f3640;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-txt{
+	border:none;
+	background: none;
+	outline: none;
+	float: left;
+	padding: 0;
+	color: black;
+	font-weight: bold;
+	font-size: 20px;
+	transition: 0.4s;
+	line-height: 40px;
+	width: 0px;
+	display: inline-block;
+}
+/*----search end------*/
+
+
+
+/*--login--*/
+.login-body{
+   width: 100%;
+   height: 100%;
+   background-size: cover;
+}
+
+.login-box{
+	width: 100%;
+	height: 700px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	color: green;
+	background-color: black;
+    opacity: 0.8;
+    border-radius: 15px;
+}
+
+.login-box img{
+	width:130px;
+	height: 150px;
+	margin-left:150px;
+	margin-top: -70px;
+    font-size: 40px;
+    margin-bottom: 20px;
+    padding: 13px 0;
+    text-align: center;
+}
+
+.text-box {
+	width: 100%;
+	overflow: hidden;
+	font-size: 20px;
+	padding: 15px 0;
+	margin: 8px 0;
+	border-bottom: 1px solid #4caf50;
+}
+
+.text-box i{
+	width: 50px;
+	float: left;
+	text-align: center;
+}
+
+.text-box input{
+	border:none;
+	outline: none;
+	background: none;
+	color: white;
+	font-size: 18px;
+	width: 250px;
+	float: left;
+	margin: 0 10px;
+}
+
+.btn1{
+	width: 100%;
+	background: none;
+	background-color: #e84118;
+	border:4px solid #4caf50;
+	border-radius: 30px;
+	color: white;
+	padding: 5px;
+	font-size: 20px;
+	cursor: pointer;
+	margin: 12px 0;
+}
+
+.btn1:hover{
+	cursor: pointer;
+	background:#ffc107;
+	color: #000;
+}
+
+.login-box a{
+	font-size: 20px;
+	padding: 5px;
+	line-height: 20px;
+	margin-left: 10px;
+	color: white;
+}
+
+.login-box a:hover{
+	color: #ffc107;
+}
+
+.social-media{
+    height: 50px;
+    width: 60%;
+    margin-top: 50px;
+    margin-left: 90px;
+    border-radius: 1px;
+    border-bottom-color: #dc3545;
+}
+.social-media a i{
+	height: 100px;
+	width: 100px;
+    font-size: 35px;
+	float: left;
+	margin-left: 40px;
+	margin-top: 15px;
+}
+/*--login end----*/
+
+
+/*---boxes---*/
+.quote{
+	width: 100%;
+	min-height: 350px;
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.quote .box{
+	position: relative;
+	float: left;
+	width: 100%;
+	height: 550px;
+	background: #fff;
+	overflow: hidden;
+	transition: 0.5s;
+	box-sizing: border-box;
+	padding: 30px;
+	box-shadow: -10px 25px 50px rgba(0,0,0,.2);
+}
+
+.quote .box:hover{
+	box-shadow: -20px 50px 100px rgba(0,0,0,.5);
+}
+
+.quote .bg{
+	position: absolute;
+	top: 0;
+	left: 0;
+	opacity: 0;
+	transition: 0.5s;
+	pointer-events: none;
+	width: 100%;
+	height: 100%;
+}
+
+.quote .box.box1:hover
+{
+	opacity: 1;
+	background: linear-gradient(#03A9F4,#E91E63);
+}
+
+.quote .box.box2:hover
+{
+	opacity: 1;
+	background: linear-gradient(#FFC107,#19FD36);
+}
+
+.quote .box.box3:hover
+{
+	opacity: 1;
+	background: linear-gradient(#FFC107,#E91F64);
+}
+
+.quote .box:before{
+	content: '';
+	position: absolute;
+	top: 0;
+	left: -50%;
+	width: 100%;
+	height: 100%;
+	background: rgba(255,255,255,.2);
+	pointer-events: none;
+}
+
+.quote .box p{
+	margin: 0;
+	padding: 0;
+	font-size: 17px;
+}
+
+.quote .box:hover p{
+     color: #fff;
+}
+
+.quote .box h2{
+	text-align: center;
+	text-decoration: underline;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+	font-size: 20px;
+	text-transform: uppercase;
+}
+
+.quote .box:hover h2{
+     color: #fff;
+}
+/*-------end boxes------*/
+
+/*---voter register---*/
+/* Style the input container */
+.voter-register {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.icon {
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 50px;
+  text-align: center;
+}
+
+.input-field {
+  width: 100%;
+  padding: 10px;
+  outline: none;
+}
+
+.input-field:focus {
+  border: 4px solid dodgerblue;
+  border-radius: 5px;
+}
+
+.register-btn button{
+	width: 100%;
+}
+
+.register-btn input[type=submit]{
+	width: 100%;
+}
+
+.DB{
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 70px;
+  text-align: center;
+}
+/*---end voter register---*/
+
+
+/*------candidate register---*/
+.candidate-register {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.DB{
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 75px;
+  text-align: center;
+}
+/*----end candidate register----*/
+
+
+/*----password reset---*/
+.passReset{
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.pass-text {
+	text-align: center;
+}
+/*-----end reset-------*/
+
+ .nepali img h1{
+ 	color:black;
+ }
+
+
+/*---social media index---*/
+.middle{
+
+	width: 100%;
+	text-align: center;
+	border-right: 1px solid black;
+}
+
+.btn-social{
+	display: inline-block;
+	width: 80px;
+	height: 80px;
+	background: #f1f1f1;
+	margin-left: -70px;
+	border-radius: 30%;
+	box-shadow: 0 5px 15px -5px #00000070;
+	color: #3498db;
+	overflow: hidden;
+	position: relative;
+}
+
+.btn-social i{
+	line-height: 90px;
+	font-size: 26px;
+}
+
+.btn-social:hover i{
+	transform: scale(1.3);
+	color: #f1f1f1;
+}
+
+.btn-social::before{
+	content: "";
+	position: absolute;
+	width: 120%;
+	height: 120px;
+	background: #3498db;
+	transform: rotate(45deg);
+	left: -110%;
+	top: 90%;
+}
+
+.btn-social:hover::before{
+	animation: aaa 0.7s 1;
+	top: -10%;
+	left: -10%;
+}
+
+@keyframes aaa{
+	0%{
+		left: -110%;
+		top: 90%;
+	}50%{
+		left: 10%;
+		top: -30%;
+	}100%{
+		top: -10%;
+		left: -10%;
+	}
+}
+
+.middle ul li{
+	list-style: none;
+}
+
+/*----end social media-----*/
+
+
+/*-----intro-system---- */
+.intro-system {
+  width: 100%;
+}
+
+.intro-system img{
+  width: 100%;
+}
+
+.intro-font p{
+	font-size: 17px;
+    align-items: baseline;
+}
+/*----end intro system----*/
+
+
+/*---digital system services point images ---*/
+.jumbotron{
+	background-color: blue;
+}
+
+.pont-img img{
+	width: 98px;
+	height: 98px;
+}
+/*---end services point image----*/
+
+/*---newsletter form---*/
+#subscribe-form {
+    position: fixed;
+    width: 360px;
+    bottom: 0;
+    left: 0;
+    padding: 9px;
+    margin: 0 0 10px 10px;
+    border-radius: 3px;
+    background-color: #fcd050;
+}
+
+.alert-dismissable, .alert-dismissible {
+    padding-right: 35px;
+}
+
+.alert {
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+
+.small, small {
+    font-size: 85%;
+}
+
+.Subscribe{
+	display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+}
+
+.Subscribe-btn button{
+    width: 100%;
+}
+
+.Subscribe-btn input[type=submit]{
+	width: 100%;
+}
+/*---end newsletter form---*/
+
+
+/*----about page----*/
+ .about h1{
+	text-align: center;
+	font-weight: bold;
+	color:  #3498db ;
+
+}
+
+.about-image img{
+	width: 100%;
+	height: 500px;
+}
+
+.img-container1{
+	height: 400px;
+	width: 100%;
+	border-radius: 5px;
+	font-size: 17px;
+}
+
+.img-container1 img{
+	height: 400px;
+	border-radius: 5px;
+	width: 100%;
+}
+
+.voter1 img{
+    height: 470px;
+    width: 100%;
+    border-radius: 5px;
+}
+/*----end about page*/
+
+
+/*--------contact page-----*/
+.contact-image img{
+	width: 100%;
+	height: 580px;
+	background-repeat: no-repeat;
+	background-size: cover;
+
+}
+
+/* Bottom right text */
+.text-block {
+  position: absolute;
+  bottom: 50px;
+  left: 500px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/*---------end contact page---*/
+
+/*----foter icon in home page----*/
+.footer-social-icon a i{
+   padding: 3px;
+   line-height: 30px;
+	font-size: 26px;
+	transform: scale(0.2);
+}
+
+.footer-menu nav ul li{
+	list-style: none;
+	padding: 5px;
+}
+
+.footer-menu nav a{
+	padding: 8px;
+	font-size: 20px;
+}
+
+.to_top {
+    position: fixed;
+    bottom: 20px;
+    right: 0;
+}
+
+.btn-top{
+	border: 0 none;
+	border-radius: 2px;
+	box-shadow: 0 1px 2px 0 rgba(50, 50, 50, 0.15);
+	color: #fff;
+	background-color: #0867b1;
+	font-size: 15px;
+	letter-spacing: 2px;
+	margin: 0;
+	max-width: 100%;
+	padding: 10px 40px;
+	text-transform: uppercase;
+}
+
+/*----end icon foter-------------*/
+
+/*----security page---*/
+.security-block{
+  position: absolute;
+  bottom: 180px;
+  left: 100px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.security-locked-img img{
+	width: 98px;
+	height: 98px;
+}
+/*--end security page---*/
+
+/*----instruction page----*/
+.instruct-block{
+  position: absolute;
+  bottom: 180px;
+  left: 200px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.instruct-img img{
+   width: 98px;
+   height: 98px;
+}
+
+.instruct-image img{
+   width: 100%;
+   height: 550px;
+
+}
+/*----end instruction page----*/
+
+/*---blog style---*/
+.blog{
+  position: absolute;
+  bottom: 350px;
+  left: 130px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.blog-image img{
+	width: 100%;
+   height: 550px;
+}
+
+.blog-icon img{
+   width: 98px;
+   height: 98px;
+}
+
+/*--blog form---*/
+.blog-background {
+	height: 500px;
+}
+
+.blog-background img{
+	height: 500px;
+	width: 100%;
+	border-radius: 15px;
+}
+
+.blog-background i{
+	color: white;
+}
+
+.blog-area{
+	width: 100%;
+	height: 730px;
+	background-color: #273746;
+}
+
+.blog-area label{
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.blog-area input[type=text]{
+	width: 100%;
+	height: 40px;
+}
+
+.blog-area input[type=file]{
+	width: 100%;
+	height: 40px;
+}
+
+.blog-area input[type=date]{
+	width: 100%;
+	height: 40px;
+}
+
+.blog-area input[type=submit]{
+	width: 100%;
+	height: 50px;
+	border-radius: 10px;
+	font-size: 26px;
+}
+
+.admin-footer h1{
+	color: white;
+	text-align: center;
+	margin-top: 50px;
+}
+/*---end blog style-form--*/
+
+/*----admin panel----*/
+/* Style the sidebar - fixed full height */
+.sidebar {
+  height: 100%;
+  width: 17%;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #273746;
+  overflow-x: hidden;
+  padding-top: 16px;
+  border: 2px solid yellow;
+}
+
+/* Style sidebar links */
+.sidebar a {
+  padding: 6px 8px 30px 16px;
+  text-decoration: none;
+  font-size: 18px;
+  color: white;
+  display: block;
+  margin-left: 20px;
+  list-style-position:inside;
+  box-shadow:-4px 6px 8px  #7f8c8d ;
+}
+
+/* Style links on mouse-over */
+/*
+.sidebar a:hover {
+	font-size:20px;
+	color:white;
+}
+*/
+
+.admin-image img{
+  height: 100px;
+  width: 50%;
+  margin-left: 40px;
+}
+
+.admin-image p{
+  margin-left: 40px;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+  text-decoration: underline;
+}
+
+
+.content{
+	width: 100%;
+	height: 100%;
+	background-color: #273746;
+}
+
+
+.admin-panel{
+	width: 100%;
+	height:60px;
+	color: white;
+	text-align: center;
+}
+
+.admin-panel img{
+	height: 500px;
+	width: 100%;
+}
+
+.admin-block{
+  position: absolute;
+  bottom: 260px;
+  color: black;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 70%;
+}
+/*----end admin panel---*/
+
+/*----Voter dashboard------*/
+.voter-block{
+  position: absolute;
+  bottom: 550px;
+  left: 350px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.voter-dash{
+	width: 100%;
+	height:100%;
+	color: white;
+	text-align: center;
+}
+
+.voter-dash img{
+    height: 500px;
+	width: 100%;
+}
+/*-----end voter dashboard----*/
+
+/*------cast-vote----*/
+.cast-vote{
+	width: 100%;
+	height:60px;
+	color: white;
+	text-align: center;
+}
+
+.vote-background{
+	height: 200px;
+	width: 100%;
+}
+
+.vote-background label{
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	font-size: 22px;
+}
+
+.vote-background a{
+	color: white;
+	font-size: 18px;
+}
+
+.vote-area{
+	width: 100%;
+	height: 730px;
+	background-color: #273746;
+}
+
+.vote-area label{
+	display: inline-block;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+}
+
+.vote-area input[type=text]{
+	width: 100%;
+	height: 40px;
+}
+
+.vote-area input[type=submit]{
+	width: 100%;
+	height: 40px;
+	font-size: 20px;
+}
+
+/*---end vote----------*/
+
+/*---voter id generator form---*/
+.generate-background{
+    height: 100%;
+    width: 100%;
+}
+
+.generate-background i{
+    color: white;
+}
+
+.genere{
+    top: 100px;
+}
+
+.voterid_generater{
+	height: 400px;
+}
+
+.voterid_generator label{
+    font-size: 25px;
+}
+
+.id_generator_form label{
+	font-size: 25px;
+}
+
+.genere input[type=text]{
+    width: 100%;
+}
+
+.genere input[type=submit]{
+    width: 100%;
+    border-radius: 10px;
+}
+
+.Generate-btn:hover{
+   width: 100%;
+   background-color: red;
+}
+
+.id_generator_form i{
+	text-decoration: none;
+	background-color: white;
+	color: black;
+}
+
+.vote-dash{
+    width: 100%;
+	height:60px;
+	color: black;
+	text-align: center;
+}
+/*-----end voter id generator form---*/
+
+/*----voter profile----*/
+.voter_profile_div{
+	height: 100%;
+	width: 100%;
+}
+
+.profile_body{
+	width: 100%;
+	height: 100%;
+	background-color: #273746;
+}
+/*---end voter profile---*/
+
+/*---display blog---*/
+.blog-content{
+	background-color: #aaa;
+    width: 100%;
+}
+
+.blog-content .img-blog
+{
+	height:300px;
+	width: 100%;
+}
+
+.blog-con{
+    height: 100%;
+    width: 100%;
+    font-size: 18px;
+    border-left: 1px solid black;
+}
+
+.blogss{
+    height: 100%;
+    width: 100%;
+}
+
+.blogheading h2
+{
+	color:dodgerblue;
+}
+/*--end display blog*/
+
+/*---candidate-dashboard----*/
+.candidate-block{
+  position: absolute;
+  bottom: 430px;
+  left: 350px;
+  color: black;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.candidate_profile_div{
+    height: 100%;
+	width: 100%;
+}
+/*----and c dashboard-----*/
+
+/*---cookiee message---*/
+#cookieconsent_container
+{
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #fff;
+    padding: 30px;
+    width: 100%;
+    height: 70px;
+    bottom: 0;
+    left: 0;
+}
+
+.cookie{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.text-right {
+    text-align: right;
+}
+
+#cookieconsent_container .btn-allow {
+    background-color: #ef1e1e;
+    color: #fff;
+    padding: 8px 15px;
+    text-transform: uppercase;
+    text-decoration: none !important;
+}
+/*---end cookies--------*/
+
+/*---candidate request form-----*/
+.pic{
+  padding: 10px;
+  background: dodgerblue;
+  color: white;
+  min-width: 110px;
+  height: 50px;
+  }
+
+.request_profile_div{
+	height: 100%;
+	width: 100%;
+}
+
+.request_body{
+	width: 100%;
+	height: 100%;
+	background-color:#273746;
+}
+
+.candidate-register input[type=file]{
+    width: 100%;
+    position: relative;
+    height: 40px;
+    float: left;
+}
+
+.gender-style {
+  display: flex;
+  width: 100%;
+  margin-bottom: 15px;
+  color: white;
+  font-size: 18px;
+}
+/*--end candidate request form----*/
+
+/*--VoterRequest---*/
+.voterRequest{
+    width: 100%;
+	height: 100%;
+	background-color: #bdc3c7;
+}
+
+.voter-heading{
+	width: 100%;
+	height:60px;
+	color: black;
+	text-align: center;
+}
+
+.hr-line{
+    height: 2px;
+    margin:20px 0 -30px 0;
+    background:rgba(255,255,255,.2);
+}
+/*--end voter request----*/
+
+
+/*---update profile body----*/
+.profile_Update_body{
+    width: 100%;
+	height: 100%;
+	background-color: #273746;
+}
+/*--end profile update-------*/
+
+
+/*--Admin System-------*/
+.admin-system{
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+.system h1{
+    text-align: center;
+    color: black;
+}
+
+.admin-system h1{
+    text-align: center;
+    color: black;
+}
+
+.admin-system nav{
+    height: 40px;
+    background-color: #444;
+    text-align: center;
+}
+
+.admin-system nav a{
+    font-size: 1.2em;
+    padding: 15px;
+    display: inline;
+    transition: .3s background-color;
+    color: white;
+    font-family: 'Oswald', sans-serif;
+    line-height: 40px;
+}
+
+.system-content{
+    text-align: center;
+    margin-top: 200px;
+    font-size: 25px;
+}
+
+.candidateadd-form{
+    text-align: center;
+    height: 100%;
+    margin-top: 30px;
+    font-size: 25px;
+}
+
+.candidateadd-form label{
+    font-size: 25px;
+    color: black;
+}
+
+.candidateadd-form input[type=text]{
+    width: 50%;
+    height: 40px;
+    border-radius: 5px;
+    border: 2px solid black;
+}
+
+.candiadd-btn button{
+    width: 100%;
+    height: 50px;
+}
+
+.candiadd-btn button:hover{
+    background-color: green;
+    color: white;
+}
+/*--end admin system-------*/
+
+.select select{
+    width: 100%;
+}
+
+.pic-profile{
+    margin-left: 50px;
+}
