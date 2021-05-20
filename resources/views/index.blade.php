@@ -50,7 +50,7 @@
                             <h1 class="display-2">Cleaning Services Company</h1>
                             <h3>Shallow men believe in luck; wise and strong men in the cause and effect </h3>
                             <a href="instruction.php"><button type="button" class="btn btn-outline-light btn-lg bg-primary">VIEW DEMO</button></a>
-                            <a href="candidate_Login.php"><button type="button" class="btn btn-outline-light btn-lg bg-primary">USER SIGN UP!!</button></a>
+                            <a href="{{ 'user_register' }}"><button type="button" class="btn btn-outline-light btn-lg bg-primary">USER SIGN UP!!</button></a>
                         </div>
                     </div>
 

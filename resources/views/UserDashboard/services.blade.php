@@ -8,7 +8,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cleaning Service AdminDashboard</title>
+    <title>Services</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
@@ -43,7 +43,7 @@
         <li class="nav-item active">
             <a class="nav-link" href="{{'admin_dashboard'}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span> User Dashboard</span></a>
+                <span> Services</span></a>
         </li>
 
         <!-- Divider -->
@@ -64,7 +64,7 @@
             <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Interact:</h6>
-                    <a class="collapse-item" href="{{'/services'}}">Services</a>
+                    <a class="collapse-item" href="{{'/customers'}}">Services</a>
                     <a class="collapse-item" href="{{'/booked'}}">Booked</a>
                 </div>
             </div>
@@ -327,44 +327,123 @@
 
                 <!-- Page Heading -->
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800"> User Dashboard</h1>
+                    <h1 class="h3 mb-0 text-gray-800"> Services</h1>
                 </div>
 
 
                 <div class="row">
 
                     <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
+                    <div class="col-xl-12 col-lg-7">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
+                            <div>
+                                @if(Session::has('success'))
+                                    <div class="alert alert-success">
+                                        {{ Session::get('success') }}
+                                    </div>
+                                @endif
+                            </div>
                             <div
                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
+                                <h6 class="m-0 font-weight-bold text-primary text-center">Booking Form</h6> 
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
+                                <div>
+                                    <form method="POST" action="{{ route('service') }}">
+                                        @csrf
+                                        
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input id="date" type="date" class="form-control @error('date')
+                                                       is-invalid @enderror" name="date" value="{{ old('date') }}"
+                                                       required autocomplete="date" autofocus placeholder="date">
+            
+                                                    @error('date')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input id="location" type="text" class="form-control @error('location')
+                                                       is-invalid @enderror" name="location" value="{{ old('location') }}"
+                                                       required autocomplete="location" placeholder="location ">
+                
+                                                        @error('location')
+                                                        <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                            </div>
+                                        </div>
+
+                                        {{-- <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <input id="name" type="text" class="form-control @error('name')
+                                                       is-invalid @enderror" name="name" value="{{ old('name') }}"
+                                                       required autocomplete="name" autofocus placeholder="Name">
+            
+                                                    @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                    @enderror
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input id="phone" type="number" class="form-control @error('phone')
+                                                    is-invalid @enderror" name="phone" value="{{ old('phone') }}"
+                                                       required autocomplete="phone" autofocus placeholder="phone">
+            
+                                                @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div> 
+                                        </div> --}}
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                                <label>Which Service Do you want? Please choose any two services:</label><br/>
+                                                <input type="checkbox" name="service" value="rc"> Room Cleaning 1000 / services <br/>
+                                                <input type="checkbox" name="service" value="bc"> Bathroom Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service" value="kc"> Kitchen Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service" value="cc"> Curtains Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service" value="cc1"> Carpet Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service" value="l"> Laundry 1000 / services<br/><br/>
+                                                {{-- <input id="name" type="radio" value="Room Cleaning"  class="@error('name')
+                                                       is-invalid @enderror" name="name" 
+                                                       > --}}
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                                <div class="">
+                                                    <label><strong>Select Number of Cleaners :</strong></label><br/>
+                                                    <select class="selectpicker" name="NoFcleaner">
+                                                      <option value="one">1</option>
+                                                      <option value="two">2</option>
+                                                      <option value="three">3</option>
+                                                      <option value="four">4</option>
+                                                      <option value="five">5</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <button type="submit" class="btn btn-primary btn-user btn-block">
+                                            {{ __('Book Now !!') }}
+                                        </button>
+                                        <hr>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-
-                   
                 </div>
             </div>
             <!-- /.container-fluid -->
@@ -375,7 +454,7 @@
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 202</span>
+                    <span>Copyright &copy; Your Website 2021</span>
                 </div>
             </div>
         </footer>

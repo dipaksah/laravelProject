@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Register</title>
+    <title>Register</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}} " rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
                         <div class="text-center">
                             <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
                         </div>
-                        <form method="POST" class="user" action="{{ route('register') }}">
+                        <form method="POST" class="user" action="/user_register">
                             @csrf
                             <div class="form-group row">
                                 <div class="col-sm-12 mb-3 mb-sm-0">

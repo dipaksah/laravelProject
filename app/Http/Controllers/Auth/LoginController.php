@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 
 class LoginController extends Controller
 {
+
+
 
     use AuthenticatesUsers;
 
@@ -17,18 +21,44 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/user_dashboard';
 
-    public function redirectTo()
-    {
-        $type = Auth::user()->is_admin;
+    public function login(){
+        return view('/user_login');
+    }
 
-        if($type == 'admin'){
-            return '/admin_dashboard';
-        }elseif ($type == '') {
-            return '/home';
-        } else {
-            return  '/user_login';
+    // public function redirectTo()
+    // {
+    //     $type = Auth::user()->is_admin;
+
+    //     if($type == 'admin'){
+    //         return '/admin_dashboard';
+    //     }elseif ($type == '') {
+    //         return '/user_dashboard';
+    //     } else {
+    //         return  '/user_login';
+    //     }
+    // }
+
+    public function authenticate(Request $request){
+        $request->validate([
+            'email' => 'required|string|email',
+            'password' => 'required|string',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        // $type = Auth::user()->is_admin;
+
+        if (Auth::attempt($credentials)) {
+            // return redirect()->intended('UserDashboard.user_dashboard');
+            return redirect()->route('home');
+        }
+        // elseif(Auth::attempt($credentials) && $type == 'admin'){
+        //     return redirect()->intended('AdminDashboard_Layout.admin_dashboard');
+        // }
+        else{
+            return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
         }
     }
 
@@ -45,4 +75,6 @@ class LoginController extends Controller
     {
         $this->middleware('guest')->except('logout');
     }
+
+    
 }
