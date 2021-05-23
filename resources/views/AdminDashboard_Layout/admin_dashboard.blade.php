@@ -10,6 +10,20 @@
 
     <title>Cleaning Service AdminDashboard</title>
 
+    <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.bundle"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.js.map"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -65,26 +79,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Interact:</h6>
                     <a class="collapse-item" href="{{'/customers'}}">Customers</a>
-                    <a class="collapse-item" href="{{'/booked'}}">Booked</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="collapse-item" href="{{'/booked'}}">Orders</a>
                 </div>
             </div>
         </li>
@@ -316,6 +311,48 @@
             </nav>
             <!-- End of Topbar -->
 
+
+             {{-- Start Edit Model for cleaner --}}
+             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="madal-title" id="exampleModalLable">Cleaners Details</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+
+                       <form method="POST" action="" >
+                           {{ csrf_field() }}
+                           {{-- @if($data as $result)  --}}
+                           <div class="modal-body" id="editForm">
+                               {{-- @foreach($user as $users) --}}
+                               <div class="form-group">
+                   
+                                   <label for="name">Full Name</label>
+                                   <input type="text" name="name" id="username" value="" class="form-control"  />
+                               </div>
+                               <div class="form-group">
+                                   <label for="status">Email</label>
+                                   <input type="status" name="status" value="" id="status" class="form-control" />
+                               </div>
+                               <div class="modal-footer">
+                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                                   <button type="button" class="btn btn-primary">Update Data</button>
+                               </div>
+                               {{-- @endforeach --}}
+                           </div>
+                           {{-- @endif --}}
+                       </form>
+
+                   </div>
+                </div>
+
+            </div>
+           {{-- End Edit Model for cleaner --}}
+
+
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
@@ -328,74 +365,80 @@
                 <div class="row">
 
                     <!-- Area Chart -->
-                    <div class="col-xl-8 col-lg-7">
+                    <div class="col-xl-12 col-lg-7">
                         <div class="card shadow mb-4">
                             <!-- Card Header - Dropdown -->
                             <div
                                 class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Earnings Overview</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Cleaners Management</h6>
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                         <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
                                     </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
                                 </div>
                             </div>
                             <!-- Card Body -->
                             <div class="card-body">
-                                <div class="chart-area">
-                                    <canvas id="myAreaChart"></canvas>
+                                
+                                    
+                                   <div class="col-x1-6 col-lg-7">
+                                    <form method="POST" action="{{ route('cleaneradd') }}"
+                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-1 mw-100 navbar-search">
+                                    @csrf
+                                    <div class="input-group">
+                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control bg-light border-0 small" placeholder="cleaners name"
+                                            aria-label="Search" aria-describedby="basic-addon2">
+                                        <div class="input-group-append">
+                                            <button type="submit" class="btn btn-primary btn-user btn-block">
+                                                {{ __('Add Cleaners') }}
+                                            </button>
+                                            <hr>
+                                        </div>
+                                        <div class="table-responsive">
+                                            <hr>
+                                            <table class="table table-striped table-hover table-condensed">
+                                              <thead>
+                                                <tr>
+                                                  <th><strong>Cleaner</strong></th>
+                                                  <th><strong>Status</strong></th>
+                                                </tr>
+                                              </thead>
+                                              <tbody>
+                                                @foreach($data as $result)
+                                                <tr>  
+                                                    <td>{{ $result->name }}</td>
+                                                    <td>{{ $result->status }}</td>
+                                                    <td><a href={{ "deletecleaner/".$result['id'] }} onclick="return confirm('Are you sure to delete this record?')"
+                                                        class="btn btn-danger" type="submit">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                        Delete
+                                                    </a>
+                                                        {{ csrf_field() }}
+                                                    </td>
+                                                    <td>
+                                                        <a href=""  
+                                                            data-toggle="modal" data-target="#editModal"
+                                                            class="btn btn-primary">
+                                                            Edit
+                                                        </a>
+                                                        {{ csrf_field() }}
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                              </tbody>
+                                            </table>
+                                          </div>
+
+                                    </div>
+                                </form>
+                                   
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Pie Chart -->
-                    <div class="col-xl-4 col-lg-5">
-                        <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                                         aria-labelledby="dropdownMenuLink">
-                                        <div class="dropdown-header">Dropdown Header:</div>
-                                        <a class="dropdown-item" href="#">Action</a>
-                                        <a class="dropdown-item" href="#">Another action</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#">Something else here</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Card Body -->
-                            <div class="card-body">
-                                <div class="chart-pie pt-4 pb-2">
-                                    <canvas id="myPieChart"></canvas>
-                                </div>
-                                <div class="mt-4 text-center small">
-                                        <span class="mr-2">
-                                            <i class="fas fa-circle text-primary"></i> Direct
-                                        </span>
-                                    <span class="mr-2">
-                                            <i class="fas fa-circle text-success"></i> Social
-                                        </span>
-                                    <span class="mr-2">
-                                            <i class="fas fa-circle text-info"></i> Referral
-                                        </span>
-                                </div>
+                   
                             </div>
                         </div>
                     </div>

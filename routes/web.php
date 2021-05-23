@@ -28,28 +28,60 @@ Route::post('/user_login',[App\Http\Controllers\Auth\LoginController::class,'aut
 Route::get('/user_register',function (){
     return view('user_register');
 })->name('userRegister');
+Route::post('/user_register',[App\Http\Controllers\Auth\RegisterController::class,'create']);   
 
-//for Admin user
+// for Admin
 Route::group(['middleware'=>['auth','admin']],function(){
     Route::get('/admin_dashboard', function (){
         return view('AdminDashboard_Layout.admin_dashboard');
     });
+
+    Route::get('/customers', function () {
+        return view('AdminDashboard_Layout.customers');
+    });
+    
+    //all customer fetch from database 
+    Route::get('/customers',[App\Http\Controllers\customerController::class,'showall'])->name('customers');
+
+    Route::get('/booked', function () {
+        return view('/AdminDashboard_Layout.booked');     
+    });
+    Route::get('/booked',[App\Http\Controllers\serviceController::class,'showall'])->name('allservices');
+
+    //delete customer by admin
+    Route::get('deletecustomer/{id}',[App\Http\Controllers\customerController::class,'destroy']);
+
+    //delete service by admin
+    Route::get('deleteservice/{id}',[App\Http\Controllers\serviceController::class,'destroy']);
+
+    //adding cleaner by admin
+    Route::post('/admin_dashboard',[App\Http\Controllers\cleanerController::class,'store'])->name('cleaneradd');
+
+    //show all cleaner
+    Route::get('/admin_dashboard',[App\Http\Controllers\cleanerController::class,'showall'])->name('allcleaner');
+
+    //delete cleaner by admin
+    Route::get('deletecleaner/{id}',[App\Http\Controllers\cleanerController::class,'destroy']);
+    
+    //edit by admin customer
+    Route::get('editcustomer/{id}',[App\Http\Controllers\customerController::class,'edit'])->name('editone');
+
+
 });
 
 //for Normal user
 Route::group(['middleware'=>['auth','user']],function(){
     Route::get('/user_dashboard', function (){
         return view('UserDashboard.user_dashboard');
-    });
-
-    // Route::get('/services',[App\Http\Controllers\serviceController::class,'index'])->('service');
-    // Route::post('services',[App\Http\Controllers\serviceController::class,'store'])->name('store');
-    // Route::post('/services',[App\Http\Controllers\serviceController::class,'index'])->name('index');
-
+    })->name('userdashbaord');
+    
+    Route::get('/services',[App\Http\Controllers\serviceController::class,'index'])->name('service');
+    Route::post('/services',[App\Http\Controllers\serviceController::class,'store']);
 });
 
  
-   
+
+// Route::post('/services',[App\Http\Controllers\serviceController::class,'index'])->name('index');
 
 
 

@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
-use Auth;
-class serviceController extends Controller
+use App\Models\User;
+
+class customerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class serviceController extends Controller
      */
     public function index()
     {
-        return view('UserDashboard.services');
+        //
     }
 
     /**
@@ -35,26 +35,7 @@ class serviceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $request->validate([
-        //     'date' => ['required', 'string', 'max:255'],
-        //     'location' => ['required', 'string', 'max:255'],
-        //     'service' => ['required', 'string', 'max:255'],
-        //     'NoFcleaner' => ['required', 'string', 'max:255']
-        // ]);
-        // dd($request->all());
-
-        $services = new Service();
-        $services->userId = Auth::user()->id;
-        $services->date = $request->date;
-        $services->location = $request->location;
-        $services->service = implode(',', $request->service);
-        $services->NoFcleaner = $request->NoFcleaner;
-
-        // dd($service);
-
-        $services->save();
-        return redirect()->route('userdashbaord')->with('success','successfully booked.');
+        //
     }
 
     /**
@@ -65,8 +46,9 @@ class serviceController extends Controller
      */
     public function showall()
     {
-        $data = Service::all();
-        return view('/AdminDashboard_Layout.booked',['data'=>$data]);
+        $data = User::all();
+        return view('/AdminDashboard_Layout.customers',['data'=>$data]);
+        
     }
 
     /**
@@ -77,11 +59,11 @@ class serviceController extends Controller
      */
     public function edit($id)
     {
-        $order = User::find($id);
-        dd($order);  
-        return view('AdminDashboard_Layout.booked');    
+        // dd($user);
+        $customer = User::find($id);
+        dd($customer);  
+        return view('AdminDashboard_Layout.customers');    
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -102,8 +84,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        $service=Service::find($id);
-        $service->delete();
-        return redirect()->route('allservices');
+        $deletecustomer=User::find($id);
+        $deletecustomer->delete();
+        return redirect()->route('customers');
     }
 }

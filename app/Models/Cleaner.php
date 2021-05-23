@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Service extends Model
+class Cleaner extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_services';
+
+    protected $table = 'tbl_cleaner';
 
     protected $fillable=[
-        'date',
-        'location',
-        'service',
-        'NoFcleaner'
+        'name'
     ];
 }

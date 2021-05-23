@@ -18,9 +18,9 @@ class UserMiddleware
     public function handle(Request $request, Closure $next)
     {
         $user=Auth::user();
-        if ($user->is_admin==''){
+        if ($user->is_admin=='user'){
             return $next($request);
         }
-        return redirect()->route('/user_login');
+        return redirect()->route('userLogin');
     }
 }

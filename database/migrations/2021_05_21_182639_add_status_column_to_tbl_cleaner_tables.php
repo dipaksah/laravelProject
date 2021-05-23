@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddIsAdminColumnToUsersTable extends Migration
+class AddStatusColumnToTblCleanerTables extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddIsAdminColumnToUsersTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->string('is_admin')->default('user');
+        Schema::table('tbl_cleaner', function (Blueprint $table) {
+            $table->string('status')->default('Active');
         });
     }
 
@@ -25,8 +25,8 @@ class AddIsAdminColumnToUsersTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-           $table->dropColumn('is_admin');
+        Schema::table('tbl_cleaner', function (Blueprint $table) {
+            $table->dropColumn('status');
         });
     }
 }

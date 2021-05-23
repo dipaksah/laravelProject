@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Service;
-use Auth;
-class serviceController extends Controller
+use App\Models\Cleaner;
+
+class cleanerController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class serviceController extends Controller
      */
     public function index()
     {
-        return view('UserDashboard.services');
+        //
     }
 
     /**
@@ -36,25 +36,10 @@ class serviceController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
-        // $request->validate([
-        //     'date' => ['required', 'string', 'max:255'],
-        //     'location' => ['required', 'string', 'max:255'],
-        //     'service' => ['required', 'string', 'max:255'],
-        //     'NoFcleaner' => ['required', 'string', 'max:255']
-        // ]);
-        // dd($request->all());
-
-        $services = new Service();
-        $services->userId = Auth::user()->id;
-        $services->date = $request->date;
-        $services->location = $request->location;
-        $services->service = implode(',', $request->service);
-        $services->NoFcleaner = $request->NoFcleaner;
-
-        // dd($service);
-
-        $services->save();
-        return redirect()->route('userdashbaord')->with('success','successfully booked.');
+        $cleaner = new Cleaner();
+        $cleaner->name = $request->name;
+        $cleaner->save();
+        return redirect()->route('cleaneradd')->with('success','successfully added.');
     }
 
     /**
@@ -65,8 +50,8 @@ class serviceController extends Controller
      */
     public function showall()
     {
-        $data = Service::all();
-        return view('/AdminDashboard_Layout.booked',['data'=>$data]);
+        $data = Cleaner::all();
+        return view('/AdminDashboard_Layout.admin_dashboard',['data'=> $data]);
     }
 
     /**
@@ -77,9 +62,9 @@ class serviceController extends Controller
      */
     public function edit($id)
     {
-        $order = User::find($id);
-        dd($order);  
-        return view('AdminDashboard_Layout.booked');    
+        $cleaner = User::find($id);
+        dd($cleaner);  
+        return view('AdminDashboard_Layout.admin_dashboard');    
     }
 
     /**
@@ -102,8 +87,8 @@ class serviceController extends Controller
      */
     public function destroy($id)
     {
-        $service=Service::find($id);
-        $service->delete();
-        return redirect()->route('allservices');
+        $deletecleaner = Cleaner::find($id);
+        $deletecleaner->delete();
+        return redirect()->route('allcleaner');
     }
 }

@@ -35,7 +35,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Service Admin</div>
         </a>
 
         <!-- Divider -->
@@ -68,26 +68,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Interact:</h6>
                     <a class="collapse-item" href="{{'/customers'}}">Customers</a>
-                    <a class="collapse-item" href="{{'/booked'}}">Booked</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="collapse-item" href="{{'/booked'}}">Orders</a>
                 </div>
             </div>
         </li>
@@ -128,11 +109,11 @@
                 <span>Charts</span></a>
         </li>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+         <!-- Nav Item - logout -->
+         <li class="nav-item">
+            <a class="nav-link" href="{{'logout'}}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
+                <span>Logout</span></a>
         </li>
 
         <!-- Divider -->
@@ -356,19 +337,98 @@
             </nav>
             <!-- End of Topbar -->
 
+
+            {{-- Start Edit Model for orders details --}}
+            <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                   <div class="modal-content">
+                       <div class="modal-header">
+                           <h5 class="madal-title" id="exampleModalLable">Orders Details</h5>
+                           <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                               <span aria-hidden="true">&times;</span>
+                           </button>
+                       </div>
+
+                       <form method="POST" action="" id="editForm">
+                           {{ csrf_field() }}
+                           
+                           <div class="modal-body">
+                               <div class="form-group">
+                                   <label for="name">Full Name</label>
+                                   <input type="text" name="name" id="name" value="" class="form-control"  />
+                               </div>
+                               <div class="form-group">
+                                   <label for="email">Email</label>
+                                   <input type="email" name="email" value="" id="email" class="form-control" />
+                               </div>
+                               <div class="form-group">
+                                   <label for="number">Phone Number</label>
+                                   <input type="number" name="phone" value="" id="phone" class="form-control" />
+                               </div>
+                               <div class="modal-footer">
+                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                                   <button type="button" class="btn btn-primary">Update Data</button>
+                               </div>
+                           </div>
+                           
+                       </form>
+
+                   </div>
+                </div>
+
+            </div>
+           {{-- End Edit Model for customer --}}
+
+
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
-                <h1 class="h3 mb-4 text-gray-800">Booked Information</h1>
+                <h1 class="h3 mb-4 text-gray-800">Order Information</h1>
                 <div class="row">
                     <div class="col-lg-12">
                         <!-- Circle Buttons -->
                         <div class="card shadow mb-4">
                             <div class="card-header py-3">
-                                <h6 class="m-0 font-weight-bold text-primary">Booked Customers</h6>
+                                <h6 class="m-0 font-weight-bold text-primary">Booked Services</h6>
                             </div>
                             <div class="card-body">
-                                <p>this section for Booking information</p>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-hover table-condensed">
+                                      <thead>
+                                        <tr>
+                                          <th><strong>Customer</strong></th>
+                                          <th><strong>Date</strong></th>
+                                          <th><strong>Location</strong></th>
+                                          <th><strong>Service</strong></th>
+                                          <th><strong>No.OF.Cleaner</strong></th>
+                                          <th><strong>Delete</strong></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        @foreach($data as $result)
+                                        <tr>  
+                                            <td></td>
+                                            <td>{{ $result->date }}</td>
+                                            <td>{{ $result->location }}</td>
+                                            <td>{{ $result->service }}</td>
+                                            <td>{{ $result->NoFcleaner }}</td>
+                                            <td><a href={{"deleteservice/".$result['id']}} onclick="return confirm('Are you sure to delete this record?')"
+                                                class="btn btn-danger" type="submit">Delete</a>
+                                                {{ csrf_field() }}
+                                            </td>
+                                            <td>
+                                                <a href="" 
+                                                    data-toggle="modal" data-target="#editModal"
+                                                    class="btn btn-primary">
+                                                    Edit
+                                                </a>
+                                                {{ csrf_field() }}
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                    </table>
+                                  </div>
                             </div>
                         </div>
                     </div>

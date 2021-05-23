@@ -7,12 +7,11 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use App\Models\User;
 
 
 class LoginController extends Controller
 {
-
-
 
     use AuthenticatesUsers;
 
@@ -21,11 +20,9 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/user_dashboard';
+    // protected $redirectTo = '/user_dashboard';
 
-    public function login(){
-        return view('/user_login');
-    }
+   
 
     // public function redirectTo()
     // {
@@ -41,25 +38,20 @@ class LoginController extends Controller
     // }
 
     public function authenticate(Request $request){
-        $request->validate([
-            'email' => 'required|string|email',
-            'password' => 'required|string',
-        ]);
+            $request->validate([
+                'email' => 'required|string|email',
+                'password' => 'required'
+            ]);
 
-        $credentials = $request->only('email', 'password');
-
-        // $type = Auth::user()->is_admin;
-
-        if (Auth::attempt($credentials)) {
-            // return redirect()->intended('UserDashboard.user_dashboard');
-            return redirect()->route('home');
-        }
-        // elseif(Auth::attempt($credentials) && $type == 'admin'){
-        //     return redirect()->intended('AdminDashboard_Layout.admin_dashboard');
-        // }
-        else{
-            return redirect('login')->with('error', 'Oppes! You have entered invalid credentials');
-        }
+            if (Auth::attempt(['email'=> $request->email, 'password'=> $request->password, 'is_admin' => 'user'])) {
+                return redirect()->route('userdashbaord');
+            }
+            elseif(Auth::attempt(['email'=> $request->email, 'password'=> $request->password, 'is_admin' => 'admin'])){
+                return redirect('/admin_dashboard');
+            }
+            else{
+                return redirect('/user_login')->with('error', 'Oppes! You have entered invalid credentials');
+            }
     }
 
 
@@ -74,6 +66,10 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function login(){
+        return view('/user_login');
     }
 
     

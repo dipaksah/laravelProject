@@ -408,12 +408,12 @@
                                         <div class="form-group row">
                                             <div class="col-sm-4 mb-3 mb-sm-0">
                                                 <label>Which Service Do you want? Please choose any two services:</label><br/>
-                                                <input type="checkbox" name="service" value="rc"> Room Cleaning 1000 / services <br/>
-                                                <input type="checkbox" name="service" value="bc"> Bathroom Cleaning 1000 / services<br/>
-                                                <input type="checkbox" name="service" value="kc"> Kitchen Cleaning 1000 / services<br/>
-                                                <input type="checkbox" name="service" value="cc"> Curtains Cleaning 1000 / services<br/>
-                                                <input type="checkbox" name="service" value="cc1"> Carpet Cleaning 1000 / services<br/>
-                                                <input type="checkbox" name="service" value="l"> Laundry 1000 / services<br/><br/>
+                                                <input type="checkbox" name="service[]" value="rc"> Room Cleaning 1000 / services <br/>
+                                                <input type="checkbox" name="service[]" value="bc"> Bathroom Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service[]" value="kc"> Kitchen Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service[]" value="cc"> Curtains Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service[]" value="cc1"> Carpet Cleaning 1000 / services<br/>
+                                                <input type="checkbox" name="service[]" value="l"> Laundry 1000 / services<br/><br/>
                                                 {{-- <input id="name" type="radio" value="Room Cleaning"  class="@error('name')
                                                        is-invalid @enderror" name="name" 
                                                        > --}}
@@ -425,11 +425,11 @@
                                                 <div class="">
                                                     <label><strong>Select Number of Cleaners :</strong></label><br/>
                                                     <select class="selectpicker" name="NoFcleaner">
-                                                      <option value="one">1</option>
-                                                      <option value="two">2</option>
-                                                      <option value="three">3</option>
-                                                      <option value="four">4</option>
-                                                      <option value="five">5</option>
+                                                      <option value="1">1</option>
+                                                      <option value="2">2</option>
+                                                      <option value="3">3</option>
+                                                      <option value="4">4</option>
+                                                      <option value="5">5</option>
                                                     </select>
                                                 </div>
                                             </div>

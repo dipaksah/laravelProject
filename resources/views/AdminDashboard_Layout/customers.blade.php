@@ -11,6 +11,19 @@
 
     <title>SB Admin 2 - Buttons</title>
 
+    <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.bundle"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.js.map"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -19,6 +32,16 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/customAuth/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+
+    {{--  --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script> --}}
 
 </head>
 
@@ -35,7 +58,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3">Service Admin </div>
         </a>
 
         <!-- Divider -->
@@ -68,26 +91,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Interact:</h6>
                     <a class="collapse-item" href="{{'/customers'}}">Customers</a>
-                    <a class="collapse-item" href="{{'/booked'}}">Booked</a>
-                </div>
-            </div>
-        </li>
-
-        <!-- Nav Item - Utilities Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-               aria-expanded="true" aria-controls="collapseUtilities">
-                <i class="fas fa-fw fa-wrench"></i>
-                <span>Utilities</span>
-            </a>
-            <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                 data-parent="#accordionSidebar">
-                <div class="bg-white py-2 collapse-inner rounded">
-                    <h6 class="collapse-header">Custom Utilities:</h6>
-                    <a class="collapse-item" href="utilities-color.html">Colors</a>
-                    <a class="collapse-item" href="utilities-border.html">Borders</a>
-                    <a class="collapse-item" href="utilities-animation.html">Animations</a>
-                    <a class="collapse-item" href="utilities-other.html">Other</a>
+                    <a class="collapse-item" href="{{'/booked'}}">Orders</a>
                 </div>
             </div>
         </li>
@@ -128,11 +132,11 @@
                 <span>Charts</span></a>
         </li>
 
-        <!-- Nav Item - Tables -->
-        <li class="nav-item">
-            <a class="nav-link" href="tables.html">
+         <!-- Nav Item - logout -->
+         <li class="nav-item">
+            <a class="nav-link" href="{{'logout'}}">
                 <i class="fas fa-fw fa-table"></i>
-                <span>Tables</span></a>
+                <span>Logout</span></a>
         </li>
 
         <!-- Divider -->
@@ -356,6 +360,63 @@
             </nav>
             <!-- End of Topbar -->
 
+            {{-- Start Edit Model for customer --}}
+             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
+                 <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="madal-title" id="exampleModalLable">Customer Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <form method="POST" action={{'customerController@update'}} >
+                            {{ csrf_field() }}
+                            {{-- @if($data as $result)  --}}
+                            <div class="modal-body" id="editForm">
+                                {{-- @foreach($user as $users) --}}
+                                <div class="form-group">
+                    
+                                    <label for="name">Full Name</label>
+                                    <input type="text" name="name" id="username" value="" class="form-control"  />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" value="" id="email" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">Phone Number</label>
+                                    <input type="number" name="phone" value="" id="phone" class="form-control" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                                    <button type="button" class="btn btn-primary">Update Data</button>
+                                </div>
+                                {{-- @endforeach --}}
+                            </div>
+                            {{-- @endif --}}
+                        </form>
+
+                    </div>
+                 </div>
+
+             </div>
+            {{-- End Edit Model for customer --}}
+            <script>
+                $(document).ready(function () {
+                    $("#editModal").on("show.bs.modal", function (e) {
+                        var user = $(e.relatedTarget).data('name');
+                        var email = $(e.relatedTarget).data('email');
+                        var phone = $(e.relatedTarget).data('phone');
+
+                        $('#username').val(user);
+                        $('#email').val(email);
+                        $('#phone').val(phone);
+                    });
+                });
+            
+            </script>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -368,7 +429,50 @@
                                 <h6 class="m-0 font-weight-bold text-primary">Interested Customers</h6>
                             </div>
                             <div class="card-body">
-                                <p>this section for customer table</p>
+                                <div class="table-responsive">
+                                    <table id="datatable" class="table table-bordered table-striped table-hover table-dark">
+                                      <thead>
+                                        <tr>
+                                          <th><strong>Name</strong></th>
+                                          <th><strong>Email</strong></th>
+                                          <th><strong>Phone</strong></th>
+                                        </tr>
+                                      </thead>
+                                      <tfoot>
+                                          <tr>
+                                            <th><strong>Name</strong></th>
+                                            <th><strong>Email</strong></th>
+                                            <th><strong>Phone</strong></th>
+                                          </tr>
+                                      </tfoot>
+                                      <tbody>
+                                        @foreach($data as $customer)
+                                        <tr>  
+                                            <td>{{ $customer->name }}</td>
+                                            <td>{{ $customer->email }}</td>
+                                            <td>{{ $customer->phone }}</td>
+                                            <td><a href={{"deletecustomer/".$customer['id']}} onclick="return confirm('Are you sure to delete this record?')"
+                                                class="btn btn-danger" type="submit">Delete
+                                                <i class="fas fa-trash-alt"></i></a>
+                                                {{ csrf_field() }}
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('editone',$customer->id) }}" 
+                                                    id="edituser" data-name="{{ $customer->name }}" 
+                                                    data-email="{{ $customer->email }}"
+                                                    data-phone="{{ $customer->phone }}"
+                                                    data-target-id="{{ $customer->id }}" 
+                                                    data-id="{{ $customer->id }}" 
+                                                    data-toggle="modal" data-target="#editModal"
+                                                    class="btn btn-primary">
+                                                    Edit
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                    </table>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -418,16 +522,22 @@
         </div>
     </div>
 </div>
-
+{{-- 
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('/customAuth/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('/customAuth/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="{{asset('/customAuth/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="{{asset('/customAuth/js/sb-admin-2.min.js')}}"></script>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+<!-- Core plugin JavaScript-->
+<script src="{{asset('/customAuth/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{{asset('/customAuth/js/sb-admin-2.min.js')}}"></script> --}}
 
 </body>
 
