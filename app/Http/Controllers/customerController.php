@@ -62,8 +62,8 @@ class customerController extends Controller
     {
         // dd($user);
         $customer = User::find($id);
-        dd($customer);  
-        return view('AdminDashboard_Layout.customers', compact('customer'));    
+        // dd($customer);  
+        return view('AdminDashboard_Layout.customers', compact('customer','id'));    
     }
     /**
      * Update the specified resource in storage.
@@ -74,7 +74,7 @@ class customerController extends Controller
      */
     public function update($id)
     {
-        // dd($id);
+        // dd(request()->all());
         // $update = [
         //     'name' => $request->name,
         //     'email' => $request->email,
@@ -82,7 +82,7 @@ class customerController extends Controller
         // ];
 
         // DB::table('users')->where('id', $request->id)->update($update);
-        // return redirect()->route('customers')->with('success','data updated');
+        // 
 
         $this->validate(request(), [
             'name' => 'required',
@@ -100,7 +100,7 @@ class customerController extends Controller
         $user->update();
 
         // Session::flash('flash_message', 'Task successfully added!');
-
+        return redirect()->route('customers')->with('success','data updated');
         
     }
 

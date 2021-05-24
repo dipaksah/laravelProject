@@ -11,17 +11,12 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Buttons</title>
+    <title>Service Customer</title>
 
     <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
     <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.bundle"/>
     <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.js.map"/>
-
-    <script>
-        var cid = {{ session() ->get('cid') }};
-
-        </script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -368,9 +363,11 @@
             <!-- End of Topbar -->
 
             {{-- Start Edit Model for customer --}}
-            @if($customer->count > 0)
-            @foreach($customer as $cust)
-             <div class="modal fade" id="editModal{{ $cust->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
+            {{-- @if($customer->count > 0)
+            @foreach($customer as $cust) --}}
+            <form method="PATCH" id="myForm" >
+                @csrf
+             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
                  <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -379,27 +376,21 @@
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-
-                        <form method="PATCH" action=""  >
-                            {{-- {{ csrf_field() }} --}}
-                            @csrf
-                            {{-- {{ csrf_method('PUT') }} --}}
-                            {{-- @if($data as $result)  --}}
+                                                    
                             <div class="modal-body" id="editForm">
-                                {{-- @foreach($user as $users) --}}
                                 <div class="form-group">
                                     <input type="hidden" name="uid" id="uid" value="" class="form-control"  />
 
                                     <label for="name">Full Name</label>
-                                    <input type="text" name="name" id="username" value="{{ $cust->name }}" class="form-control"  />
+                                    <input type="text" name="name" id="username" value="" class="form-control"  />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" value="{{ $cust->email }}" id="email" class="form-control" />
+                                    <input type="email" name="email" value="" id="email" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="number">Phone Number</label>
-                                    <input type="number" name="phone" value="{{ $cust->phone }}" id="phone" class="form-control" />
+                                    <input type="number" name="phone" value="" id="phone" class="form-control" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
@@ -408,16 +399,17 @@
                                 {{-- @endforeach --}}
                             </div>
                             {{-- @endif --}}
-                        </form>
+                        
 
                     </div>
                  </div>
 
              </div>
-             @endforeach
-             @endif
+            </form>
+             {{-- @endforeach
+             @endif --}}
             {{-- End Edit Model for customer --}}
-            {{-- <script>
+            <script>
                 $(document).ready(function () {
                     $("#editModal").on("show.bs.modal", function (e) {
                         var user = $(e.relatedTarget).data('name');
@@ -431,10 +423,10 @@
                         $('#uid').val(userid);
                     });
                 });
-                var getid = document.getElementById("uid").value;
-                console.log(getid);
             
-            </script> --}}
+                
+            
+            </script>
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -483,9 +475,11 @@
                                                     data-phone="{{ $customer->phone }}"
                                                     data-targetid="{{ $customer->id }}" 
                                                     data-id="{{ $customer->id }}" 
-                                                    data-toggle="modal" data-target="#editModal{{ $customer->id }}"
-                                                    class="btn btn-primary">
-                                                    Edit
+                                                    onclick="changeRoute({{ route('updatecust', $customer->id) }})"
+                                                    data-url="{{ route('updatecust', $customer->id) }}"
+                                                    data-toggle="modal" data-target="#editModal"
+                                                    class="myBtn btn btn-primary">
+                                                    Edit    
                                                 </a>
                                           
                                             </td>
@@ -502,6 +496,20 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
+
+        <script>
+            function changeRoute(url) {
+                    alert(url);
+                    $("#myForm").attr("action",url);
+                    }
+
+                    $(".myBtn").click(function() {
+                        var url = $(this).attr("data-url");
+                        console.log(url);
+                        $("#myForm").attr("action",url);
+
+                    });
+        </script>
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">

@@ -77,9 +77,9 @@ class serviceController extends Controller
      */
     public function edit($id)
     {
-        $order = User::find($id);
-        dd($order);  
-        return view('AdminDashboard_Layout.booked');    
+        $order = Service::find($id);
+        // dd($order);  
+        return view('AdminDashboard_Layout.booked',compact('order','id'));    
     }
 
     /**
@@ -89,9 +89,28 @@ class serviceController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        // dd($request->all());
+        $this->validate(request(), [
+            'date' => 'required',
+            'location' => 'required',
+            'service' => 'required',
+            'NoFcleaner' => 'required',
+        ]);
+
+        $service = Service::find($id);
+        
+        $service->date=request()->input('date');
+        $service->location=request()->input('location');
+        $service->service=request()->input('service');
+        $service->NoFcleaner=request()->input('NoFcleaner');
+             
+       
+        $service->update();
+
+        // Session::flash('flash_message', 'Task successfully added!');
+        return redirect()->route('allservices')->with('success','data updated');
     }
 
     /**

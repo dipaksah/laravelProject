@@ -74,9 +74,23 @@ class cleanerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        $this->validate(request(), [
+            'name' => 'required',
+            'status' => 'required',
+        ]);
+
+        $cleaner = Cleaner::find($id);
+
+        $cleaner->name=request()->input('name');
+        $cleaner->status=request()->input('status');
+             
+        // dd($user);
+        $cleaner->update();
+
+        // Session::flash('flash_message', 'Task successfully added!');
+        return redirect()->route('allcleaner')->with('success','data updated');
     }
 
     /**

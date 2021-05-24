@@ -38,6 +38,8 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('/customAuth/css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+
 </head>
 
 <body id="page-top">
@@ -357,6 +359,8 @@
 
 
             {{-- Start Edit Model for orders details --}}
+            <form method="PATCH" id="myForm">
+                @csrf
             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                    <div class="modal-content">
@@ -367,9 +371,6 @@
                            </button>
                        </div>
 
-                       <form method="POST" action="" id="editForm">
-                           {{ csrf_field() }}
-                           
                            <div class="modal-body">
                                <div class="form-group">
                                    <label for="date">Date</label>
@@ -377,7 +378,7 @@
                                </div>
                                <div class="form-group">
                                    <label for="location">Location</label>
-                                   <input type="location" name="location" value="" id="location" class="form-control" />
+                                   <input type="text" name="location" value="" id="location" class="form-control" />
                                </div>
                                <div class="form-group">
                                    <label for="service">Service</label>
@@ -389,16 +390,14 @@
                             </div>
                                <div class="modal-footer">
                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-                                   <button type="button" class="btn btn-primary">Update Data</button>
+                                   <button type="submit" class="btn btn-primary">Update Data</button>
                                </div>
                            </div>
-                           
-                       </form>
-
                    </div>
                 </div>
 
             </div>
+        </form>
            {{-- End Edit Model for customer --}}
 
            <script>
@@ -451,19 +450,18 @@
                                             <td>{{ $result->NoFcleaner }}</td>
                                             <td><a href={{"deleteservice/".$result['id']}} onclick="return confirm('Are you sure to delete this record?')"
                                                 class="btn btn-danger" type="submit">Delete</a>
-                                                {{ csrf_field() }}
-                                            </td>
-                                            <td>
+                                    
                                                 <a href=""
                                                     data-date="{{ $result->date }}" 
                                                     data-location="{{ $result->location }}"
                                                     data-service="{{ $result->service }}"
                                                     data-noc="{{ $result->NoFcleaner }}"
                                                     data-toggle="modal" data-target="#editModal"
+                                                    onclick="changeRoute({{ route('updateorder', $result->id) }})"
+                                                    data-url="{{ route('updateorder', $result->id) }}"
                                                     class="btn btn-primary">
                                                     Edit
                                                 </a>
-                                                {{ csrf_field() }}
                                             </td>
                                         </tr>
                                         @endforeach
@@ -478,6 +476,20 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
+
+        <script>
+            function changeRoute(url) {
+                    alert(url);
+                    $("#myForm").attr("action",url);
+                    }
+
+                    $(".myBtn").click(function() {
+                        var url = $(this).attr("data-url");
+                        console.log(url);
+                        $("#myForm").attr("action",url);
+
+                    });
+        </script>
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
@@ -520,7 +532,7 @@
     </div>
 </div>
 
-<!-- Bootstrap core JavaScript-->
+{{-- <!-- Bootstrap core JavaScript-->
 <script src="{{asset('/customAuth/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('/customAuth/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 
@@ -528,7 +540,7 @@
 <script src="{{asset('/customAuth/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
 
 <!-- Custom scripts for all pages-->
-<script src="{{asset('/customAuth/js/sb-admin-2.min.js')}}"></script>
+<script src="{{asset('/customAuth/js/sb-admin-2.min.js')}}"></script> --}}
 
 </body>
 

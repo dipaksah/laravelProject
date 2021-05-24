@@ -67,7 +67,13 @@ Route::group(['middleware'=>['auth','admin']],function(){
     Route::get('editcustomer/{id}',[App\Http\Controllers\customerController::class,'edit'])->name('editone');
 
     //update customer by admin
-    Route::get('customerupdate/{id}',[App\Http\Controllers\customerController::class,'update']);
+    Route::get('customerupdate/{id}',[App\Http\Controllers\customerController::class,'update'])->name('updatecust');
+
+    //update cleaner by admin
+    Route::get('cleanerupdate/{id}',[App\Http\Controllers\cleanerController::class,'update'])->name('updatecleaner');
+
+    //update orders by admin
+    Route::get('orderupdate/{id}',[App\Http\Controllers\serviceController::class,'update'])->name('updateorder');
 
 
 });

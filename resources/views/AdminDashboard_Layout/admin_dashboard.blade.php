@@ -323,11 +323,10 @@
                            </button>
                        </div>
 
-                       <form method="POST" action="" >
-                           {{ csrf_field() }}
-                           {{-- @if($data as $result)  --}}
+                       <form method="PATCH" id="myForm" >
+                           @csrf
                            <div class="modal-body" id="editForm">
-                               {{-- @foreach($user as $users) --}}
+                               
                                <div class="form-group">
                    
                                    <label for="name">Full Name</label>
@@ -339,11 +338,11 @@
                                </div>
                                <div class="modal-footer">
                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-                                   <button type="button" class="btn btn-primary">Update Data</button>
+                                   <button type="submit" class="btn btn-primary">Update Data</button>
                                </div>
-                               {{-- @endforeach --}}
+                              
                            </div>
-                           {{-- @endif --}}
+                          
                        </form>
 
                    </div>
@@ -433,10 +432,12 @@
                                                             data-name="{{ $result->name }}"
                                                             data-status="{{ $result->status }}"
                                                             data-toggle="modal" data-target="#editModal"
-                                                            class="btn btn-primary">
+                                                            onclick="changeRoute({{ route('updatecleaner', $result->id) }})"
+                                                            data-url="{{ route('updatecleaner', $result->id) }}"
+                                                            class="myBtn btn btn-primary">
                                                             Edit
                                                         </a>
-                                                        {{ csrf_field() }}
+                                                        
                                                     </td>
                                                 </tr>
                                                 @endforeach
@@ -461,6 +462,20 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
+
+        <script>
+            function changeRoute(url) {
+                    alert(url);
+                    $("#myForm").attr("action",url);
+                    }
+
+                    $(".myBtn").click(function() {
+                        var url = $(this).attr("data-url");
+                        console.log(url);
+                        $("#myForm").attr("action",url);
+
+                    });
+        </script>
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
