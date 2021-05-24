@@ -11,6 +11,24 @@
 
     <title>SB Admin 2 - Buttons</title>
 
+    <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.bundle"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.js.map"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <!-- Custom fonts for this template-->
+    <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -354,17 +372,21 @@
                            
                            <div class="modal-body">
                                <div class="form-group">
-                                   <label for="name">Full Name</label>
-                                   <input type="text" name="name" id="name" value="" class="form-control"  />
+                                   <label for="date">Date</label>
+                                   <input type="date" name="date" id="date" value="" class="form-control"  />
                                </div>
                                <div class="form-group">
-                                   <label for="email">Email</label>
-                                   <input type="email" name="email" value="" id="email" class="form-control" />
+                                   <label for="location">Location</label>
+                                   <input type="location" name="location" value="" id="location" class="form-control" />
                                </div>
                                <div class="form-group">
-                                   <label for="number">Phone Number</label>
-                                   <input type="number" name="phone" value="" id="phone" class="form-control" />
+                                   <label for="service">Service</label>
+                                   <input type="text" name="service" value="" id="serviceid" class="form-control" />
                                </div>
+                               <div class="form-group">
+                                <label for="noc">No.OF.Cleaner</label>
+                                <input type="number" name="noc" value="" id="noc" class="form-control" />
+                            </div>
                                <div class="modal-footer">
                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
                                    <button type="button" class="btn btn-primary">Update Data</button>
@@ -379,6 +401,21 @@
             </div>
            {{-- End Edit Model for customer --}}
 
+           <script>
+            $(document).ready(function () {
+                $("#editModal").on("show.bs.modal", function (e) {
+                    var date = $(e.relatedTarget).data('date');
+                    var location = $(e.relatedTarget).data('location');
+                    var service = $(e.relatedTarget).data('service');
+                    var nofcleaner = $(e.relatedTarget).data('noc');
+
+                    $('#date').val(date);
+                    $('#location').val(location);
+                    $('#serviceid').val(service);
+                    $('#noc').val(nofcleaner);
+                });
+            });
+            </script>
 
             <!-- Begin Page Content -->
             <div class="container-fluid">
@@ -417,7 +454,11 @@
                                                 {{ csrf_field() }}
                                             </td>
                                             <td>
-                                                <a href="" 
+                                                <a href=""
+                                                    data-date="{{ $result->date }}" 
+                                                    data-location="{{ $result->location }}"
+                                                    data-service="{{ $result->service }}"
+                                                    data-noc="{{ $result->NoFcleaner }}"
                                                     data-toggle="modal" data-target="#editModal"
                                                     class="btn btn-primary">
                                                     Edit

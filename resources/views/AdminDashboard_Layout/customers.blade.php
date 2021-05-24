@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,6 +17,11 @@
     <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
     <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.bundle"/>
     <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.js.map"/>
+
+    <script>
+        var cid = {{ session() ->get('cid') }};
+
+        </script>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
@@ -361,7 +368,9 @@
             <!-- End of Topbar -->
 
             {{-- Start Edit Model for customer --}}
-             <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
+            @if($customer->count > 0)
+            @foreach($customer as $cust)
+             <div class="modal fade" id="editModal{{ $cust->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
                  <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -371,27 +380,30 @@
                             </button>
                         </div>
 
-                        <form method="POST" action={{'customerController@update'}} >
-                            {{ csrf_field() }}
+                        <form method="PATCH" action=""  >
+                            {{-- {{ csrf_field() }} --}}
+                            @csrf
+                            {{-- {{ csrf_method('PUT') }} --}}
                             {{-- @if($data as $result)  --}}
                             <div class="modal-body" id="editForm">
                                 {{-- @foreach($user as $users) --}}
                                 <div class="form-group">
-                    
+                                    <input type="hidden" name="uid" id="uid" value="" class="form-control"  />
+
                                     <label for="name">Full Name</label>
-                                    <input type="text" name="name" id="username" value="" class="form-control"  />
+                                    <input type="text" name="name" id="username" value="{{ $cust->name }}" class="form-control"  />
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" name="email" value="" id="email" class="form-control" />
+                                    <input type="email" name="email" value="{{ $cust->email }}" id="email" class="form-control" />
                                 </div>
                                 <div class="form-group">
                                     <label for="number">Phone Number</label>
-                                    <input type="number" name="phone" value="" id="phone" class="form-control" />
+                                    <input type="number" name="phone" value="{{ $cust->phone }}" id="phone" class="form-control" />
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-                                    <button type="button" class="btn btn-primary">Update Data</button>
+                                    <button type="submit" class="btn btn-primary">Update Data</button>
                                 </div>
                                 {{-- @endforeach --}}
                             </div>
@@ -402,21 +414,27 @@
                  </div>
 
              </div>
+             @endforeach
+             @endif
             {{-- End Edit Model for customer --}}
-            <script>
+            {{-- <script>
                 $(document).ready(function () {
                     $("#editModal").on("show.bs.modal", function (e) {
                         var user = $(e.relatedTarget).data('name');
                         var email = $(e.relatedTarget).data('email');
                         var phone = $(e.relatedTarget).data('phone');
+                        const userid = $(e.relatedTarget).data('targetid');
 
                         $('#username').val(user);
                         $('#email').val(email);
                         $('#phone').val(phone);
+                        $('#uid').val(userid);
                     });
                 });
+                var getid = document.getElementById("uid").value;
+                console.log(getid);
             
-            </script>
+            </script> --}}
             <!-- Begin Page Content -->
             <div class="container-fluid">
                 <!-- Page Heading -->
@@ -451,22 +469,25 @@
                                             <td>{{ $customer->name }}</td>
                                             <td>{{ $customer->email }}</td>
                                             <td>{{ $customer->phone }}</td>
-                                            <td><a href={{"deletecustomer/".$customer['id']}} onclick="return confirm('Are you sure to delete this record?')"
+                                            <td>
+  
+                                                <a href={{"deletecustomer/".$customer['id']}} onclick="return confirm('Are you sure to delete this record?')"
                                                 class="btn btn-danger" type="submit">Delete
                                                 <i class="fas fa-trash-alt"></i></a>
-                                                {{ csrf_field() }}
-                                            </td>
-                                            <td>
-                                                <a href="{{ route('editone',$customer->id) }}" 
-                                                    id="edituser" data-name="{{ $customer->name }}" 
+                                                
+                                            
+                                                <a href="{{ route('editone', $customer->id) }}" 
+                                                    id="edituser" 
+                                                    data-name="{{ $customer->name }}" 
                                                     data-email="{{ $customer->email }}"
                                                     data-phone="{{ $customer->phone }}"
-                                                    data-target-id="{{ $customer->id }}" 
+                                                    data-targetid="{{ $customer->id }}" 
                                                     data-id="{{ $customer->id }}" 
-                                                    data-toggle="modal" data-target="#editModal"
+                                                    data-toggle="modal" data-target="#editModal{{ $customer->id }}"
                                                     class="btn btn-primary">
                                                     Edit
                                                 </a>
+                                          
                                             </td>
                                         </tr>
                                         @endforeach

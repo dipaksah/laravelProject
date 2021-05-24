@@ -49,7 +49,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
     Route::get('/booked',[App\Http\Controllers\serviceController::class,'showall'])->name('allservices');
 
     //delete customer by admin
-    Route::get('deletecustomer/{id}',[App\Http\Controllers\customerController::class,'destroy']);
+    Route::get('deletecustomer/{id}',[App\Http\Controllers\customerController::class,'destroy'])->name('deletecust');
 
     //delete service by admin
     Route::get('deleteservice/{id}',[App\Http\Controllers\serviceController::class,'destroy']);
@@ -65,6 +65,9 @@ Route::group(['middleware'=>['auth','admin']],function(){
     
     //edit by admin customer
     Route::get('editcustomer/{id}',[App\Http\Controllers\customerController::class,'edit'])->name('editone');
+
+    //update customer by admin
+    Route::get('customerupdate/{id}',[App\Http\Controllers\customerController::class,'update']);
 
 
 });

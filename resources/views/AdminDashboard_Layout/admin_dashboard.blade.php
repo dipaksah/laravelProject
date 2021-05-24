@@ -331,10 +331,10 @@
                                <div class="form-group">
                    
                                    <label for="name">Full Name</label>
-                                   <input type="text" name="name" id="username" value="" class="form-control"  />
+                                   <input type="text" name="name" id="name" value="" class="form-control"  />
                                </div>
                                <div class="form-group">
-                                   <label for="status">Email</label>
+                                   <label for="status">Status</label>
                                    <input type="status" name="status" value="" id="status" class="form-control" />
                                </div>
                                <div class="modal-footer">
@@ -352,7 +352,19 @@
             </div>
            {{-- End Edit Model for cleaner --}}
 
+           <script>
+            $(document).ready(function () {
+                $("#editModal").on("show.bs.modal", function (e) {
+                    var cleaner = $(e.relatedTarget).data('name');
+                    var status = $(e.relatedTarget).data('status');
 
+                    $('#name').val(cleaner);
+                    $('#status').val(status);
+                    
+                });
+            });
+        
+        </script>
             <!-- Begin Page Content -->
             <div class="container-fluid">
 
@@ -418,6 +430,8 @@
                                                     </td>
                                                     <td>
                                                         <a href=""  
+                                                            data-name="{{ $result->name }}"
+                                                            data-status="{{ $result->status }}"
                                                             data-toggle="modal" data-target="#editModal"
                                                             class="btn btn-primary">
                                                             Edit

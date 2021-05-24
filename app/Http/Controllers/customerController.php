@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use DB;
 
 class customerController extends Controller
 {
@@ -62,7 +63,7 @@ class customerController extends Controller
         // dd($user);
         $customer = User::find($id);
         dd($customer);  
-        return view('AdminDashboard_Layout.customers');    
+        return view('AdminDashboard_Layout.customers', compact('customer'));    
     }
     /**
      * Update the specified resource in storage.
@@ -71,9 +72,36 @@ class customerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update($id)
     {
-        //
+        // dd($id);
+        // $update = [
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'phone' => $request->phone
+        // ];
+
+        // DB::table('users')->where('id', $request->id)->update($update);
+        // return redirect()->route('customers')->with('success','data updated');
+
+        $this->validate(request(), [
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required'
+        ]);
+
+        $user = User::find($id);
+
+        $user->name=request()->input('name');
+        $user->email=request()->input('email');
+        $user->phone=request()->input('phone');
+             
+        // dd($user);
+        $user->update();
+
+        // Session::flash('flash_message', 'Task successfully added!');
+
+        
     }
 
     /**
