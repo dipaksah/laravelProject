@@ -408,7 +408,7 @@
                                         </div>
                                         <div class="table-responsive">
                                             <hr>
-                                            <table class="table table-striped table-hover table-condensed">
+                                            <table class="table table-bordered table-striped table-hover table-dark">
                                               <thead>
                                                 <tr>
                                                   <th><strong>Cleaner</strong></th>

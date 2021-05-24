@@ -74,16 +74,6 @@ class customerController extends Controller
      */
     public function update($id)
     {
-        // dd(request()->all());
-        // $update = [
-        //     'name' => $request->name,
-        //     'email' => $request->email,
-        //     'phone' => $request->phone
-        // ];
-
-        // DB::table('users')->where('id', $request->id)->update($update);
-        // 
-
         $this->validate(request(), [
             'name' => 'required',
             'email' => 'required',
@@ -96,12 +86,10 @@ class customerController extends Controller
         $user->email=request()->input('email');
         $user->phone=request()->input('phone');
              
-        // dd($user);
         $user->update();
 
         // Session::flash('flash_message', 'Task successfully added!');
         return redirect()->route('customers')->with('success','data updated');
-        
     }
 
     /**

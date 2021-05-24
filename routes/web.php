@@ -75,6 +75,7 @@ Route::group(['middleware'=>['auth','admin']],function(){
     //update orders by admin
     Route::get('orderupdate/{id}',[App\Http\Controllers\serviceController::class,'update'])->name('updateorder');
 
+    
 
 });
 
@@ -86,6 +87,9 @@ Route::group(['middleware'=>['auth','user']],function(){
     
     Route::get('/services',[App\Http\Controllers\serviceController::class,'index'])->name('service');
     Route::post('/services',[App\Http\Controllers\serviceController::class,'store']);
+
+    //history of user
+    Route::get('/user_dashboard',[App\Http\Controllers\serviceController::class,'showOne']);
 });
 
  

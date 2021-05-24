@@ -44,7 +44,7 @@ class LoginController extends Controller
             ]);
 
             if (Auth::attempt(['email'=> $request->email, 'password'=> $request->password, 'is_admin' => 'user'])) {
-                return redirect()->route('userdashbaord');
+                return redirect('/user_dashboard');
             }
             elseif(Auth::attempt(['email'=> $request->email, 'password'=> $request->password, 'is_admin' => 'admin'])){
                 return redirect('/admin_dashboard');

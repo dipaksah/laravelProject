@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Buttons</title>
+    <title>Service Company</title>
 
     <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
     <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
@@ -371,7 +371,7 @@
                            </button>
                        </div>
 
-                           <div class="modal-body">
+                           <div class="modal-body" id="editForm">
                                <div class="form-group">
                                    <label for="date">Date</label>
                                    <input type="date" name="date" id="date" value="" class="form-control"  />
@@ -382,11 +382,11 @@
                                </div>
                                <div class="form-group">
                                    <label for="service">Service</label>
-                                   <input type="text" name="service" value="" id="serviceid" class="form-control" />
+                                   <input type="text" name="service" value="" id="service" class="form-control" />
                                </div>
                                <div class="form-group">
                                 <label for="noc">No.OF.Cleaner</label>
-                                <input type="number" name="noc" value="" id="noc" class="form-control" />
+                                <input type="number" name="NoFcleaner" value="" id="NoFcleaner" class="form-control" />
                             </div>
                                <div class="modal-footer">
                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
@@ -410,8 +410,8 @@
 
                     $('#date').val(date);
                     $('#location').val(location);
-                    $('#serviceid').val(service);
-                    $('#noc').val(nofcleaner);
+                    $('#service').val(service);
+                    $('#NoFcleaner').val(nofcleaner);
                 });
             });
             </script>
@@ -429,7 +429,7 @@
                             </div>
                             <div class="card-body">
                                 <div class="table-responsive">
-                                    <table class="table table-striped table-hover table-condensed">
+                                    <table class="table table-bordered table-striped table-hover table-dark">
                                       <thead>
                                         <tr>
                                           <th><strong>Customer</strong></th>
@@ -437,7 +437,7 @@
                                           <th><strong>Location</strong></th>
                                           <th><strong>Service</strong></th>
                                           <th><strong>No.OF.Cleaner</strong></th>
-                                          <th><strong>Delete</strong></th>
+                                          <th><strong>Action</strong></th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -459,7 +459,7 @@
                                                     data-toggle="modal" data-target="#editModal"
                                                     onclick="changeRoute({{ route('updateorder', $result->id) }})"
                                                     data-url="{{ route('updateorder', $result->id) }}"
-                                                    class="btn btn-primary">
+                                                    class="myBtn btn btn-primary">
                                                     Edit
                                                 </a>
                                             </td>

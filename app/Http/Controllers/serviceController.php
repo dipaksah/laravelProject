@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Service;
+use APP\Models\User;
 use Auth;
 class serviceController extends Controller
 {
@@ -54,7 +55,7 @@ class serviceController extends Controller
         // dd($service);
 
         $services->save();
-        return redirect()->route('userdashbaord')->with('success','successfully booked.');
+        return redirect('/user_dashboard')->with('success','successfully booked.');
     }
 
     /**
@@ -67,6 +68,16 @@ class serviceController extends Controller
     {
         $data = Service::all();
         return view('/AdminDashboard_Layout.booked',['data'=>$data]);
+    }
+
+    public function showOne(){
+        // $service = Service::find();
+        // $service = $user->service()->get();
+        $user = Auth::User();
+        // $orders = Service::all();
+        $orders = Service::where('userID', $user->id)->orderBy('id','desc')->get();
+
+        return view('/UserDashboard.user_dashboard',compact('orders', $orders));
     }
 
     /**
