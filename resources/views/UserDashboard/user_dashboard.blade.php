@@ -355,6 +355,8 @@
                                       <thead>
                                         <tr>
                                           <th><strong>Date</strong></th>
+                                          <th><strong>(Time) From</strong></th>
+                                          <th><strong>(Time) TO</strong></th>
                                           <th><strong>Location</strong></th>
                                           <th><strong>Service</strong></th>
                                           <th><strong>No.OF.Cleaner</strong></th>
@@ -364,6 +366,8 @@
                                             @foreach($orders as $result)
                                                 <tr>  
                                                     <td>{{ $result->date }}</td>
+                                                    <td>{{ $result->time1From }}</td>
+                                                    <td>{{ $result->time2To }}</td>
                                                     <td>{{ $result->location }}</td>
                                                     <td>{{ $result->service }}</td>
                                                     <td>{{ $result->NoFcleaner }}</td>

@@ -17,6 +17,8 @@ class CreateTblServicesTable extends Migration
             $table->increments('id');
             $table->integer('userID')->unsigned();
             $table->date('date');
+            $table->time('time1From');
+            $table->time('time2To');
             $table->string('location');
             $table->string('service');
             $table->string('NoFcleaner');

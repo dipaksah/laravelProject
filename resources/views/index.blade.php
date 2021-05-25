@@ -22,6 +22,21 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
 </head>
+
+<style>
+    .display-2{
+        color: green;
+    }
+
+    .serviceClean h1{
+        color: green;
+    }
+
+    .subView{
+        color: green;
+    }
+</style>
+
 <body>
 
 <x-navigation/>
@@ -46,11 +61,11 @@
                                 <h1>Cleaning Services</h1>
                             </marquee>
 
-                            <button type="button" onclick="window.location='{{ url("user_login") }}'" class="btn btn-outline-light btn-lg bg-primary"> USERS LOGIN</button>
+                            <button type="button" onclick="window.location='{{ url("user_login") }}'" class="btn btn-outline-light btn-lg bg-success"> USER LOGIN</button>
                             <h1 class="display-2">Cleaning Services Company</h1>
-                            <h3>Shallow men believe in luck; wise and strong men in the cause and effect </h3>
-                            <a href="instruction.php"><button type="button" class="btn btn-outline-light btn-lg bg-primary">VIEW DEMO</button></a>
-                            <a href="{{ 'user_register' }}"><button type="button" class="btn btn-outline-light btn-lg bg-primary">USER SIGN UP!!</button></a>
+                            <h3 class="subView">Shallow men believe in luck; wise and strong men in the cause and effect </h3>
+                            <a href="instruction.php"><button type="button" class="btn btn-outline-light btn-lg bg-success">VIEW DEMO</button></a>
+                            <a href="{{ 'user_register' }}"><button type="button" class="btn btn-outline-light btn-lg bg-success">USER SIGN UP!!</button></a>
                         </div>
                     </div>
 
@@ -87,7 +102,7 @@
 
         <div class="container-fluid text-center">
             <div class="jumbotron jumbotron-fluid">
-                <h1>Professional cleaning company</h1>
+                <h1 class="subView">Professional cleaning company</h1>
                 <p> It is also a straight representation of your lifestyle.</p>
                 <hr class="hidden-sm hidden-md hidden-lg">
                 <div class="row">
@@ -95,7 +110,7 @@
                     <div class="col-sm-4 pont-img"></div>
 
                     <div class="col-sm-4 pont-img">
-                        <h3>Reliable customer service</h3>
+                        <h3 class="subView">Reliable customer service</h3>
                         <p>We employ our exclusive Detail-Clean technique to make sure that your home always
                             meet the extreme standard of hygiene. Our staffs follow different
                             approaches to confirm that our customers are always pleased and can presume
@@ -113,7 +128,7 @@
             <section class="footer-contact-area section_padding_100 clearfix" id="contact">
                 <!-- Heading Text  -->
                 <div class="section-heading">
-                    <h2>Get in touch with us!</h2>
+                    <h2 class="subView">Get in touch with us!</h2>
                     <div class="line-shape"></div>
                 </div>
                 <div class="footer-text">
@@ -133,7 +148,7 @@
             <!-- Form Start-->
             <div class="contact_from">
                 <form action="../Controller/Contact_Controller.php" method="POST">
-                    <h1>Newsletter Form</h1>
+                    <h1 class="subView">Contact Us</h1>
                     <!-- Message Input Area Start -->
                     <div class="contact_input_area">
                         <div class="row">
@@ -172,8 +187,7 @@
 <div class="col-sm-4 pont-img"></div>
 
         <!-- ***** Contact Us Area End ***** -->
-
-
+    
         <!-- ***** Footer Area Start ***** -->
         <container  class="container-fluid jumbotron"  >
             <footer class="footer-social-icon text-center section_padding_70 clearfix">
@@ -182,7 +196,7 @@
                     <i class="fa fa-chevron-up" aria-hidden="true"></i></a>
                 <!-- footer logo -->
                 <div class="footer-text">
-                    <h2>Cleaning Services Company</h2>
+                    <h2 class="subView">Cleaning Services Company</h2>
                 </div>
                 <hr class="hidden-sm hidden-md hidden-lg">
                 <!-- social icon-->

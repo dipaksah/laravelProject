@@ -12,6 +12,8 @@ class Service extends Model
 
     protected $fillable=[
         'date',
+        'time1From',
+        'time2From',
         'location',
         'service',
         'NoFcleaner'

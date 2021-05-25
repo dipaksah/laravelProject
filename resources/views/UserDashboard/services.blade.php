@@ -402,9 +402,9 @@
                                                 <label for="to">From</label>
                                             </div>
                                             <div class="col-sm-4 mb-3 mb-sm-0">
-                                                <input id="time1" type="time" class="form-control @error('time1')
-                                                       is-invalid @enderror" name="time1" value="{{ old('time1') }}"
-                                                       required autocomplete="time1" autofocus placeholder="Time1">
+                                                <input id="time1From" type="time" class="form-control @error('time1From')
+                                                       is-invalid @enderror" name="time1From" value="{{ old('time1From') }}"
+                                                       required autocomplete="time1From" autofocus placeholder="time1From">
             
                                                     @error('time1')
                                                     <span class="invalid-feedback" role="alert">
@@ -416,9 +416,9 @@
                                                 <label for="to">TO</label>
                                             </div>
                                             <div class="col-sm-4">
-                                                <input id="time2" type="time" class="form-control @error('time2')
-                                                    is-invalid @enderror" name="time2" value="{{ old('time2') }}"
-                                                       required autocomplete="time2" autofocus placeholder="time2">
+                                                <input id="time2To" type="time" class="form-control @error('time2To')
+                                                    is-invalid @enderror" name="time2To" value="{{ old('time2To') }}"
+                                                       required autocomplete="timtime2Toe2" autofocus placeholder="time2To">
             
                                                 @error('time2')
                                                 <span class="invalid-feedback" role="alert">
