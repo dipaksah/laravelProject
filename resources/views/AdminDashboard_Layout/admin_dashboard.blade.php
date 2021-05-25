@@ -413,6 +413,7 @@
                                                 <tr>
                                                   <th><strong>Cleaner</strong></th>
                                                   <th><strong>Status</strong></th>
+                                                  <th><strong>Action</strong></th>
                                                 </tr>
                                               </thead>
                                               <tbody>
@@ -425,9 +426,7 @@
                                                         <i class="fas fa-trash-alt"></i>
                                                         Delete
                                                     </a>
-                                                        {{ csrf_field() }}
-                                                    </td>
-                                                    <td>
+                                                       
                                                         <a href=""  
                                                             data-name="{{ $result->name }}"
                                                             data-status="{{ $result->status }}"

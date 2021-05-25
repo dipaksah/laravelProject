@@ -443,13 +443,16 @@
                                     <table id="datatable" class="table table-bordered table-striped table-hover table-dark">
                                       <thead>
                                         <tr>
+                                          <th><strong>CustomerID</strong></th>
                                           <th><strong>Name</strong></th>
                                           <th><strong>Email</strong></th>
                                           <th><strong>Phone</strong></th>
+                                          <th><strong>Action</strong></th>
                                         </tr>
                                       </thead>
                                       <tfoot>
                                           <tr>
+                                            <th><strong>CustomerID</strong></th>
                                             <th><strong>Name</strong></th>
                                             <th><strong>Email</strong></th>
                                             <th><strong>Phone</strong></th>
@@ -458,6 +461,7 @@
                                       <tbody>
                                         @foreach($data as $customer)
                                         <tr>  
+                                            <td>{{ $customer->id }}</td>
                                             <td>{{ $customer->name }}</td>
                                             <td>{{ $customer->email }}</td>
                                             <td>{{ $customer->phone }}</td>

@@ -10,6 +10,19 @@
 
     <title>Services</title>
 
+    <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.bundle"/>
+    <link type="text/css" rel="stylesheet" href="resources/js/bootstrap.js.map"/>
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -18,6 +31,8 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/customAuth/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
 </head>
 
 <body id="page-top">
@@ -41,9 +56,9 @@
 
         <!-- Nav Item - Dashboard -->
         <li class="nav-item active">
-            <a class="nav-link" href="{{'admin_dashboard'}}">
+            <a class="nav-link" href="{{'user_dashboard'}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span> Services</span></a>
+                <span> User Dashboard</span></a>
         </li>
 
         <!-- Divider -->
@@ -379,30 +394,39 @@
                                             </div>
                                         </div>
 
-                                        {{-- <div class="form-group row">
-                                            <div class="col-sm-6 mb-3 mb-sm-0">
-                                                <input id="name" type="text" class="form-control @error('name')
-                                                       is-invalid @enderror" name="name" value="{{ old('name') }}"
-                                                       required autocomplete="name" autofocus placeholder="Name">
+                                        <div class="form-group row">
+                                            <div class="col-sm-2 mb-3 mb-sm-0">
+                                                <label for="time">Setup Your Time schedule From $ TO</label>
+                                            </div>
+                                            <div class="col-sm-1 mb-3 mb-sm-0">
+                                                <label for="to">From</label>
+                                            </div>
+                                            <div class="col-sm-4 mb-3 mb-sm-0">
+                                                <input id="time1" type="time" class="form-control @error('time1')
+                                                       is-invalid @enderror" name="time1" value="{{ old('time1') }}"
+                                                       required autocomplete="time1" autofocus placeholder="Time1">
             
-                                                    @error('name')
+                                                    @error('time1')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                     @enderror
                                             </div>
-                                            <div class="col-sm-6">
-                                                <input id="phone" type="number" class="form-control @error('phone')
-                                                    is-invalid @enderror" name="phone" value="{{ old('phone') }}"
-                                                       required autocomplete="phone" autofocus placeholder="phone">
+                                            <div class="col-sm-1 mb-3 mb-sm-0">
+                                                <label for="to">TO</label>
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <input id="time2" type="time" class="form-control @error('time2')
+                                                    is-invalid @enderror" name="time2" value="{{ old('time2') }}"
+                                                       required autocomplete="time2" autofocus placeholder="time2">
             
-                                                @error('name')
+                                                @error('time2')
                                                 <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
                                             </div> 
-                                        </div> --}}
+                                        </div>
 
 
                                         <div class="form-group row">
@@ -419,6 +443,19 @@
                                                        > --}}
                                             </div>
                                         </div>
+                                        <script>
+                                            var $checkboxes = $('input[type=checkbox]')
+                                                $checkboxes.change(function () {
+                                                    if (this.checked) {
+                                                        if ($checkboxes.filter(':checked').length == 2) {
+                                                            $checkboxes.not(':checked').prop('disabled', true);
+                                                        }
+                                                    } else {
+                                                        $checkboxes.prop('disabled', false);
+                                                    }
+                                                });
+                                
+                                        </script>
 
                                         <div class="form-group row">
                                             <div class="col-sm-6 mb-3 mb-sm-0">
@@ -449,6 +486,8 @@
             <!-- /.container-fluid -->
         </div>
         <!-- End of Main Content -->
+
+        
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">

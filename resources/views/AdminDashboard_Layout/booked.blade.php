@@ -432,7 +432,7 @@
                                     <table class="table table-bordered table-striped table-hover table-dark">
                                       <thead>
                                         <tr>
-                                          <th><strong>Customer</strong></th>
+                                          <th><strong>CustomerID</strong></th>
                                           <th><strong>Date</strong></th>
                                           <th><strong>Location</strong></th>
                                           <th><strong>Service</strong></th>
@@ -443,7 +443,7 @@
                                       <tbody>
                                         @foreach($data as $result)
                                         <tr>  
-                                            <td></td>
+                                            <td>{{ $result->userID }}</td>
                                             <td>{{ $result->date }}</td>
                                             <td>{{ $result->location }}</td>
                                             <td>{{ $result->service }}</td>
