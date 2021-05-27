@@ -29,6 +29,8 @@ Route::get('/user_register',function (){
     return view('user_register');
 })->name('userRegister');
 Route::post('/user_register',[App\Http\Controllers\Auth\RegisterController::class,'create']);   
+// Route::get('/user/verify/{token}', 'Auth\RegisterController@verifyUser');
+Route::get('/user/verify/{token}',[App\Http\Controllers\Auth\RegisterController::class,'verifyEmail']);
 
 // for Admin
 Route::group(['middleware'=>['auth','admin']],function(){
@@ -87,6 +89,11 @@ Route::group(['middleware'=>['auth','user']],function(){
     
     Route::get('/services',[App\Http\Controllers\serviceController::class,'index'])->name('service');
     Route::post('/services',[App\Http\Controllers\serviceController::class,'store']);
+    // Route::post('/services',[App\Http\Controllers\serviceController::class,'cal']);
+
+    // Route::post('/services', function (Request $req) {
+    //     return count($req->hobbis);
+    // });
 
     //history of user
     Route::get('/user_dashboard',[App\Http\Controllers\serviceController::class,'showOne']);

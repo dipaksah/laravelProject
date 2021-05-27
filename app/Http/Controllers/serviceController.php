@@ -51,14 +51,18 @@ class serviceController extends Controller
         $services->time1From = $request->time1From;
         $services->time2To = $request->time2To;
         $services->location = $request->location;
-        $services->service = implode(',', $request->service);
+        $services->service = implode(',' , $request->service);
         $services->NoFcleaner = $request->NoFcleaner;
-
+        
         // dd($service);
 
         $services->save();
         return redirect('/user_dashboard')->with('success','successfully booked.');
     }
+
+    // public function cal(Request $reg){
+    //     return count($req->hobbis);
+    // }
 
     /**
      * Display the specified resource.

@@ -22,6 +22,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password'
+        
     ];
 
     /**
@@ -32,6 +33,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'verification_code'
     ];
 
     /**
@@ -42,4 +44,8 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function verifyUser(){
+        return $this->hasOne('App\Models\VerifyUser');
+    }
 }
