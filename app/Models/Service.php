@@ -16,6 +16,7 @@ class Service extends Model
         'time2From',
         'location',
         'service',
-        'NoFcleaner'
+        'NoFcleaner',
+        'Total_Rate'
     ];
 }

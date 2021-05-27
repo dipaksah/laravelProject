@@ -22,6 +22,7 @@ class CreateTblServicesTable extends Migration
             $table->string('location');
             $table->string('service');
             $table->string('NoFcleaner');
+            $table->string('Total_Rate');
             $table->timestamps();
         });
     }

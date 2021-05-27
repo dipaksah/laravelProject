@@ -53,6 +53,7 @@ class serviceController extends Controller
         $services->location = $request->location;
         $services->service = implode(',' , $request->service);
         $services->NoFcleaner = $request->NoFcleaner;
+        $services->Total_Rate = $request->Total_Rate;
         
         // dd($service);
 

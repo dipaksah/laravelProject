@@ -443,14 +443,27 @@
                                                        > --}}
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6 mb-3 mb-sm-0">
+                                            <label>Total Rate:</label><br/>
+                                            <input id="Total_Rate" type="text" class="form-control" name="Total_Rate" value="">
+                                            </div>
+                                        </div>
+
+
                                         <script>
                                             var $checkboxes = $('input[type=checkbox]')
                                                 $checkboxes.change(function () {
                                                     if (this.checked) {
                                                         if ($checkboxes.filter(':checked').length == 2) {
                                                             $checkboxes.not(':checked').prop('disabled', true);
-                                                        }
-                                                    } else {
+                                                            document.getElementById("Total_Rate").value = "2000";
+
+                                                        }if($checkboxes.filter(':checked').length == 1) {
+                                                        document.getElementById("Total_Rate").value = "1000";
+                                                    }     
+                                                    }else{
                                                         $checkboxes.prop('disabled', false);
                                                     }
                                                 });

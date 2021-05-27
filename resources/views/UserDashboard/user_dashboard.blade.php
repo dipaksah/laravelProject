@@ -560,7 +560,7 @@ span.price {
                                                     <td>{{ $result->service }}</td>
                                                     <td>{{ $result->NoFcleaner }}</td>
                                                     <td>
-                                                        
+                                                        {{ $result->Total_Rate }}
                                                     </td>
                                                     <td>
                                                         <a href="" type="button"
