@@ -41,9 +41,19 @@ Route::group(['middleware'=>['auth','admin']],function(){
     Route::get('/customers', function () {
         return view('AdminDashboard_Layout.customers');
     });
+
+    Route::get('/review', function () {
+        return view('AdminDashboard_Layout.review');
+    });
     
     //all customer fetch from database 
     Route::get('/customers',[App\Http\Controllers\customerController::class,'showall'])->name('customers');
+
+    //all reviews fetch from database 
+    Route::get('/review',[App\Http\Controllers\ReviewController::class,'showall'])->name('reviews');
+
+    //delete customer by admin
+    Route::get('deletereviews/{id}',[App\Http\Controllers\ReviewController::class,'destroy'])->name('deletereviews');
 
     Route::get('/booked', function () {
         return view('/AdminDashboard_Layout.booked');     
@@ -89,11 +99,9 @@ Route::group(['middleware'=>['auth','user']],function(){
     
     Route::get('/services',[App\Http\Controllers\serviceController::class,'index'])->name('service');
     Route::post('/services',[App\Http\Controllers\serviceController::class,'store']);
-    // Route::post('/services',[App\Http\Controllers\serviceController::class,'cal']);
+    
+    Route::post('/user_dashboard',[App\Http\Controllers\reviewController::class,'store'])->name('review');
 
-    // Route::post('/services', function (Request $req) {
-    //     return count($req->hobbis);
-    // });
 
     //history of user
     Route::get('/user_dashboard',[App\Http\Controllers\serviceController::class,'showOne']);

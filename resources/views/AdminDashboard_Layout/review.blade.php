@@ -1,14 +1,17 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Cleaning Service AdminDashboard</title>
+    <title>review Customer</title>
 
     <link type="text/css" rel="stylesheet" href="resources/css/style.css"/>
     <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.css"/>
@@ -23,7 +26,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
     <!-- Custom fonts for this template-->
     <link href="{{asset('/customAuth/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
@@ -32,6 +34,17 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('/customAuth/css/sb-admin-2.min.css')}}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+
+    {{--  --}}
+    {{-- <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-alpha/css/bootstrap.css" rel="stylesheet">
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<!-- Script -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js' type='text/javascript'></script> --}}
+
 </head>
 
 <body id="page-top">
@@ -47,14 +60,14 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-2">Service Admin </div>
+            <div class="sidebar-brand-text mx-3">Service Admin </div>
         </a>
 
         <!-- Divider -->
         <hr class="sidebar-divider my-0">
 
         <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
+        <li class="nav-item">
             <a class="nav-link" href="{{'admin_dashboard'}}">
                 <i class="fas fa-fw fa-tachometer-alt"></i>
                 <span>Dashboard</span></a>
@@ -69,13 +82,14 @@
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->
-        <li class="nav-item">
-            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-               aria-expanded="true" aria-controls="collapseTwo">
+        <li class="nav-item active">
+            <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true"
+               aria-controls="collapseTwo">
                 <i class="fas fa-fw fa-cog"></i>
                 <span>Users</span>
             </a>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+            <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo"
+                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">User Interact:</h6>
                     <a class="collapse-item" href="{{'/customers'}}">Customers</a>
@@ -87,22 +101,53 @@
         <!-- Divider -->
         <hr class="sidebar-divider">
 
+        <!-- Heading -->
+        <div class="sidebar-heading">
+            Addons
+        </div>
 
-        <!-- Nav Item - logout -->
+        <!-- Nav Item - Pages Collapse Menu -->
         <li class="nav-item">
+            <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+               aria-expanded="true" aria-controls="collapsePages">
+                <i class="fas fa-fw fa-folder"></i>
+                <span>Pages</span>
+            </a>
+            <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                <div class="bg-white py-2 collapse-inner rounded">
+                    <h6 class="collapse-header">Login Screens:</h6>
+                    <a class="collapse-item" href="login.html">Login</a>
+                    <a class="collapse-item" href="register.html">Register</a>
+                    <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
+                    <div class="collapse-divider"></div>
+                    <h6 class="collapse-header">Other Pages:</h6>
+                    <a class="collapse-item" href="404.html">404 Page</a>
+                    <a class="collapse-item" href="blank.html">Blank Page</a>
+                </div>
+            </div>
+        </li>
+
+        <!-- Nav Item - Charts -->
+        <li class="nav-item">
+            <a class="nav-link" href="charts.html">
+                <i class="fas fa-fw fa-chart-area"></i>
+                <span>Charts</span></a>
+        </li>
+
+         <!-- Nav Item - logout -->
+         <li class="nav-item">
             <a class="nav-link" href="{{'logout'}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Logout</span></a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="{{'/review'}}">
-                <i class="fas fa-fw fa-table"></i>
-                <span>Review</span></a>
-        </li>
-
         <!-- Divider -->
         <hr class="sidebar-divider d-none d-md-block">
+
+        <!-- Sidebar Toggler (Sidebar) -->
+        <div class="text-center d-none d-md-inline">
+            <button class="rounded-circle border-0" id="sidebarToggle"></button>
+        </div>
 
     </ul>
     <!-- End of Sidebar -->
@@ -317,148 +362,126 @@
             </nav>
             <!-- End of Topbar -->
 
-
-             {{-- Start Edit Model for cleaner --}}
+            {{-- Start Edit Model for customer --}}
+            {{-- @if($customer->count > 0)
+            @foreach($customer as $cust) --}}
+            {{-- <form method="PATCH" id="myForm" >
+                @csrf --}}
              <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                   <div class="modal-content">
-                       <div class="modal-header">
-                           <h5 class="madal-title" id="exampleModalLable">Cleaners Details</h5>
-                           <button type="button" class="close" data-dismiss="modal" aria-label="close">
-                               <span aria-hidden="true">&times;</span>
-                           </button>
-                       </div>
+                 <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="madal-title" id="exampleModalLable">Customer Details</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                                                    
+                            <div class="modal-body" id="editForm">
+                                <div class="form-group">
+                                    <input type="hidden" name="uid" id="uid" value="" class="form-control"  />
 
-                       <form method="PATCH" id="myForm" >
-                           @csrf
-                           <div class="modal-body" id="editForm">
-                               
-                               <div class="form-group">
-                   
-                                   <label for="name">Full Name</label>
-                                   <input type="text" name="name" id="name" value="" class="form-control"  />
-                               </div>
-                               <div class="form-group">
-                                   <label for="status">Status</label>
-                                   <input type="status" name="status" value="" id="status" class="form-control" />
-                               </div>
-                               <div class="modal-footer">
-                                   <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
-                                   <button type="submit" class="btn btn-primary">Update Data</button>
-                               </div>
-                              
-                           </div>
-                          
-                       </form>
+                                    <label for="name">Full Name</label>
+                                    <input type="text" name="name" id="username" value="" class="form-control"  />
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" name="email" value="" id="email" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="number">Phone Number</label>
+                                    <input type="number" name="phone" value="" id="phone" class="form-control" />
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                                    <button type="submit" class="btn btn-primary">Update Data</button>
+                                </div>
+                                {{-- @endforeach --}}
+                            </div>
+                            {{-- @endif --}}
+                        
 
-                   </div>
-                </div>
+                    </div>
+                 </div>
 
-            </div>
-           {{-- End Edit Model for cleaner --}}
+             </div>
+            {{-- </form> --}}
+             {{-- @endforeach
+             @endif --}}
+            {{-- End Edit Model for customer --}}
+            {{-- <script>
+                $(document).ready(function () {
+                    $("#editModal").on("show.bs.modal", function (e) {
+                        var user = $(e.relatedTarget).data('name');
+                        var email = $(e.relatedTarget).data('email');
+                        var phone = $(e.relatedTarget).data('phone');
+                        const userid = $(e.relatedTarget).data('targetid');
 
-           <script>
-            $(document).ready(function () {
-                $("#editModal").on("show.bs.modal", function (e) {
-                    var cleaner = $(e.relatedTarget).data('name');
-                    var status = $(e.relatedTarget).data('status');
-
-                    $('#name').val(cleaner);
-                    $('#status').val(status);
-                    
+                        $('#username').val(user);
+                        $('#email').val(email);
+                        $('#phone').val(phone);
+                        $('#uid').val(userid);
+                    });
                 });
-            });
-        
-        </script>
+            
+                
+            
+            </script> --}}
             <!-- Begin Page Content -->
             <div class="container-fluid">
-
                 <!-- Page Heading -->
-                <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                    <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-                </div>
-
-
+                <h1 class="h3 mb-4 text-gray-800">Reviews</h1>
                 <div class="row">
-
-                    <!-- Area Chart -->
-                    <div class="col-xl-12 col-lg-7">
+                    <div class="col-lg-12">
+                        <!-- Circle Buttons -->
                         <div class="card shadow mb-4">
-                            <!-- Card Header - Dropdown -->
-                            <div
-                                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                <h6 class="m-0 font-weight-bold text-primary">Cleaners Management</h6>
-                                <div class="dropdown no-arrow">
-                                    <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                                    </a>
-                                </div>
+                            <div class="card-header py-3">
+                                <h6 class="m-0 font-weight-bold text-primary">Customers Reviews</h6>
                             </div>
-                            <!-- Card Body -->
                             <div class="card-body">
-                                
-                                    
-                                   <div class="col-x1-6 col-lg-7">
-                                    <form method="POST" action="{{ route('cleaneradd') }}"
-                                    class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-1 mw-100 navbar-search">
-                                    @csrf
-                                    <div class="input-group">
-                                        <input type="text" name="name" value="{{ old('name') }}" class="form-control bg-light border-0 small" placeholder="cleaners name"
-                                            aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button type="submit" class="btn btn-primary btn-user btn-block">
-                                                {{ __('Add Cleaners') }}
-                                            </button>
-                                            <hr>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <hr>
-                                            <table class="table table-bordered table-striped table-hover table-dark">
-                                              <thead>
-                                                <tr>
-                                                  <th><strong>Cleaner</strong></th>
-                                                  <th><strong>Status</strong></th>
-                                                  <th><strong>Action</strong></th>
-                                                </tr>
-                                              </thead>
-                                              <tbody>
-                                                @foreach($data as $result)
-                                                <tr>  
-                                                    <td>{{ $result->name }}</td>
-                                                    <td>{{ $result->status }}</td>
-                                                    <td><a href={{ "deletecleaner/".$result['id'] }} onclick="return confirm('Are you sure to delete this record?')"
-                                                        class="btn btn-danger" type="submit">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                        Delete
-                                                    </a>
-                                                       
-                                                        <a href=""  
-                                                            data-name="{{ $result->name }}"
-                                                            data-status="{{ $result->status }}"
-                                                            data-toggle="modal" data-target="#editModal"
-                                                            onclick="changeRoute({{ route('updatecleaner', $result->id) }})"
-                                                            data-url="{{ route('updatecleaner', $result->id) }}"
-                                                            class="myBtn btn btn-primary">
-                                                            Edit
-                                                        </a>
-                                                        
-                                                    </td>
-                                                </tr>
-                                                @endforeach
-                                              </tbody>
-                                            </table>
-                                          </div>
-
-                                    </div>
-                                </form>
-                                   
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                   
+                                <div class="table-responsive">
+                                    <table id="datatable" class="table table-bordered table-striped table-hover table-dark">
+                                      <thead>
+                                        <tr>
+                                          <th><strong>Customer Name</strong></th>
+                                          <th><strong>booking_id</strong></th>
+                                          <th><strong>Reviews</strong></th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                        @foreach($data as $review)
+                                        <tr>  
+                                            <td>{{ $review->user_id }}</td>
+                                            <td>{{ $review->booking_id }}</td>
+                                            <td>{{ $review->reviews }}</td>
+                                            
+                                            <td>
+  
+                                                <a href={{"deletereviews/".$review['id']}} onclick="return confirm('Are you sure to delete this record?')"
+                                                class="btn btn-danger" type="submit">Delete
+                                                <i class="fas fa-trash-alt"></i></a>
+                                                
+                                            
+                                                {{-- <a href="{{ route('editone', $customer->id) }}" 
+                                                    id="edituser" 
+                                                    data-name="{{ $customer->name }}" 
+                                                    data-email="{{ $customer->email }}"
+                                                    data-phone="{{ $customer->phone }}"
+                                                    data-targetid="{{ $customer->id }}" 
+                                                    data-id="{{ $customer->id }}" 
+                                                    onclick="changeRoute({{ route('updatecust', $customer->id) }})"
+                                                    data-url="{{ route('updatecust', $customer->id) }}"
+                                                    data-toggle="modal" data-target="#editModal"
+                                                    class="myBtn btn btn-primary">
+                                                    Edit    
+                                                </a> --}}
+                                          
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                      </tbody>
+                                    </table>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -468,25 +491,13 @@
         </div>
         <!-- End of Main Content -->
 
-        <script>
-            function changeRoute(url) {
-                    alert(url);
-                    $("#myForm").attr("action",url);
-                    }
-
-                    $(".myBtn").click(function() {
-                        var url = $(this).attr("data-url");
-                        console.log(url);
-                        $("#myForm").attr("action",url);
-
-                    });
-        </script>
+    
 
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">
                 <div class="copyright text-center my-auto">
-                    <span>Copyright &copy; Your Website 2021</span>
+                    <span>Copyright &copy; Cleaning Service</span>
                 </div>
             </div>
         </footer>
@@ -522,23 +533,22 @@
         </div>
     </div>
 </div>
-
+{{-- 
 <!-- Bootstrap core JavaScript-->
 <script src="{{asset('/customAuth/vendor/jquery/jquery.min.js')}}"></script>
 <script src="{{asset('/customAuth/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-
 <!-- Core plugin JavaScript-->
 <script src="{{asset('/customAuth/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
-
 <!-- Custom scripts for all pages-->
 <script src="{{asset('/customAuth/js/sb-admin-2.min.js')}}"></script>
 
-<!-- Page level plugins -->
-<script src="{{asset('/customAuth/vendor/chart.js/Chart.min.js')}}"></script>
-
-<!-- Page level custom scripts -->
-<script src="{{asset('/customAuth/js/demo/chart-area-demo.js')}}"></script>
-<script src="{{asset('/customAuth/js/demo/chart-pie-demo.js')}}"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script> 
+<!-- Core plugin JavaScript-->
+<script src="{{asset('/customAuth/vendor/jquery-easing/jquery.easing.min.js')}}"></script>
+<!-- Custom scripts for all pages-->
+<script src="{{asset('/customAuth/js/sb-admin-2.min.js')}}"></script> --}}
 
 </body>
 

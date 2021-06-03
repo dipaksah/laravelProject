@@ -36,10 +36,14 @@ class cleanerController extends Controller
     public function store(Request $request)
     {
         // dd($request->all());
+        // $cleaner = Cleaner::all();
+        // $count = $cleaner->count();
+        
         $cleaner = new Cleaner();
         $cleaner->name = $request->name;
         $cleaner->save();
         return redirect()->route('cleaneradd')->with('success','successfully added.');
+        // return view('/UserDashboard.user_dashboard',['count'=> $count]);
     }
 
     /**
@@ -53,6 +57,14 @@ class cleanerController extends Controller
         $data = Cleaner::all();
         return view('/AdminDashboard_Layout.admin_dashboard',['data'=> $data]);
     }
+
+   
+
+    // public function count(){
+    //     $cleaner = Cleaner::all();
+    //     $countall = $cleaner->count();
+    //     return view('/UserDashboard.services',,compact('countall'));
+    // }
 
     /**
      * Show the form for editing the specified resource.

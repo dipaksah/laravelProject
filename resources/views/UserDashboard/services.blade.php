@@ -475,11 +475,14 @@
                                                 <div class="">
                                                     <label><strong>Select Number of Cleaners :</strong></label><br/>
                                                     <select class="selectpicker" name="NoFcleaner">
+                                                        {{-- @foreach($data as $cleaner) --}}
+                                                      <option value="Available Cleaner">Select Available Cleaners</option>
                                                       <option value="2">2</option>
                                                       <option value="3">3</option>
                                                       <option value="4">4</option>
                                                       <option value="5">5</option>
-                                                      <option value="6">6</option>
+                                                      {{-- <option value="6">6</option> --}}
+                                                         {{-- @endforeach --}}
                                                     </select>
                                                 </div>
                                             </div>

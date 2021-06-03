@@ -568,6 +568,54 @@ span.price {
                                                         data-toggle="modal" data-target="#editModal"
                                                         >Pay Now !</a>
                                                     </td>
+                                                    <td>
+                                                        <a href="" type="button"
+                                                        class="btn btn-primary"
+                                                        data-toggle="modal" data-target="#reviewModal{{ $result->id }}"
+                                                        >Review !</a>
+                                                    </td>
+
+                                                    <div class="modal fade" id="reviewModal{{ $result->id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLable" aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                           <div class="modal-content">
+                                                               <div class="modal-header">
+                                                                   <h5 class="madal-title" id="exampleModalLable">Customer Reviews</h5>
+                                                                   <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                                                                       <span aria-hidden="true">&times;</span>
+                                                                   </button>
+                                                               </div>
+                                                                                           
+                                                                   <div class="modal-body" id="editForm">
+                                                                       <div class="row">
+                                                                           <div class="col-75">
+                                                                             <div class="container">
+                                                                              
+                                                                                     <form method="POST" action="{{ route('review') }}">
+                                                                                       @csrf
+                                                                                       <input type="text" name="booking_id" value="{{ $result->id }}" hidden >
+                                                                                       <div class="modal-body" id="editForm">
+                                                                                           <div class="form-group">
+                                           
+                                                                                               <label for="review">review</label>
+                                                                                               <textarea type="text" name="reviews" id="reviews" placeholder="Enter Your Reviews" class="form-control"></textarea>
+                                                                                           </div>
+                                           
+                                                                                           <div class="modal-footer">
+                                                                                               <button type="button" class="btn btn-secondary" data-dismiss="modal">close</button>
+                                                                                               <button type="submit" class="btn btn-primary">Submit Review</button>
+                                                                                           </div>
+                                                                                           {{-- @endforeach --}}
+                                                                                       </div>
+                                                                                     </form>                                 
+                                           
+                                                                                 </div>
+                                                                             </div>
+                                                                           </div>
+                                                                         </div>
+                                                                   </div>
+                                                           </div>
+                                                        </div>
+
                                                 </tr>
                                             @endforeach
                                       </tbody>
@@ -581,9 +629,17 @@ span.price {
                 </div>
             </div>
             <!-- /.container-fluid -->
-        </div>
+       
         <!-- End of Main Content -->
-      
+  
+
+         {{-- Start review for customer --}}
+        
+        
+         
+{{-- End review for customer --}}
+
+
         <!-- Footer -->
         <footer class="sticky-footer bg-white">
             <div class="container my-auto">

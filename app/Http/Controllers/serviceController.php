@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use APP\Models\User;
+use App\Models\Cleaner;
 use Auth;
 class serviceController extends Controller
 {
@@ -36,14 +37,8 @@ class serviceController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request->all());
-        // $request->validate([
-        //     'date' => ['required', 'string', 'max:255'],
-        //     'location' => ['required', 'string', 'max:255'],
-        //     'service' => ['required', 'string', 'max:255'],
-        //     'NoFcleaner' => ['required', 'string', 'max:255']
-        // ]);
-        // dd($request->all());
+        // $cleaner = Cleaner::all();
+        // dd($cleaner)
 
         $services = new Service();
         $services->userId = Auth::user()->id;
@@ -60,6 +55,12 @@ class serviceController extends Controller
         $services->save();
         return redirect('/user_dashboard')->with('success','successfully booked.');
     }
+
+    // public function allcleaner()
+    // {
+    //     $data = Cleaner::all();
+    //    return redirect()->route('service', compact('data'))->with('success','data updated');
+    // }
 
     // public function cal(Request $reg){
     //     return count($req->hobbis);
