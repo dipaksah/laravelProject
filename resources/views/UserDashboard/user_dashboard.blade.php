@@ -9,6 +9,7 @@
     <meta name="author" content="">
 
     <title>Cleaning Service AdminDashboard</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css"> 
      <!-- Latest compiled and minified CSS -->
      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
      <!-- jQuery library -->
@@ -27,6 +28,11 @@
      <link href="{{asset('/customAuth/css/sb-admin-2.min.css')}}" rel="stylesheet">
  
      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" />
+
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel='stylesheet' href='http://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css'>
+	<link rel='stylesheet' href='https://raw.githubusercontent.com/kartik-v/bootstrap-star-rating/master/css/star-rating.min.css'>
 
 <style>
     .row {
@@ -113,6 +119,50 @@ span.price {
   .col-25 {
     margin-bottom: 20px;
   }
+
+  /** rating **/
+  div.stars {
+  width: 270px;
+  display: inline-block;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 36px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
+}
+
+.ratings_vote {
+    background: url('star_full.png') no-repeat;
+}
+.ratings_over {
+    background: url('star_highlight.png') no-repeat;
+}
+/** end rating **/
 }
 </style>
 
@@ -419,7 +469,11 @@ span.price {
 
             </nav>
             <!-- End of Topbar -->
-
+            {{-- <script>
+                $('#addStar').change('.star', function(e) {
+                $(this).submit();
+                });
+            </script> --}}
      {{-- Start Edit Model for customer --}}
             <form  >
                 @csrf
@@ -590,14 +644,54 @@ span.price {
                                                                            <div class="col-75">
                                                                              <div class="container">
                                                                               
-                                                                                     <form method="POST" action="{{ route('review') }}">
+                                                                                     <form method="POST" action="{{ route('review') }}" enctype="multipart/form-data" >
                                                                                        @csrf
                                                                                        <input type="text" name="booking_id" value="{{ $result->id }}" hidden >
+                                                                                       
                                                                                        <div class="modal-body" id="editForm">
+
+                                                                
+                                                                                            <div class="form-group">
+                                                                                                <label for="">Rate This</label>
+                                                                                                <div class="form-group row">
+                                                                                                    <div class="col-sm-6 mb-3 mb-sm-0">
+                                                                                                        <div class="">
+                                                                                                            <select class="selectpicker" name="star">
+                                                                                                              <option value="Available Cleaner">Select Number of Star as Review :</option>
+                                                                                                              <option value="1">1 Star <i class="fa divya fa-star-o"></i></option>
+                                                                                                              <option value="2">2 Star</option>
+                                                                                                              <option value="3">3 Star</option>
+                                                                                                              <option value="4">4 Star</option>
+                                                                                                              <option value="5">5 Star</option>
+                                                                                                            </select>
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                             </div>
+                                                                                         {{-- <div class="star-rating" onClick="addreview">
+                                                                                             <span class="fa divya fa-star-o rate" data-rating="1" id="add" style="font-size:20px;"></span>
+                                                                                             <span class="fa fa-star-o rate" data-rating="2" id="add" style="font-size:20px;"></span>
+                                                                                             <span class="fa fa-star-o rate" data-rating="3"  id="add"style="font-size:20px;"></span>
+                                                                                             <span class="fa fa-star-o rate" data-rating="4" id="add" style="font-size:20px;"></span>
+                                                                                             <span class="fa fa-star-o rate" data-rating="5" id="add" style="font-size:20px;"></span>
+                                                                                             <input type="hidden" name="whatever3" class="rating-value" id="total" value="1">
+                                                                                         </div>
+                                                                                         <script>
+                                                                                             function addreview()
+                                                                                             {
+                                                                                                var a = document.getElementById('add');
+                                                                                                console.log(a);
+                                                                                             }
+                                                                                             </script> --}}
+                                                                                         </div>
+
                                                                                            <div class="form-group">
-                                           
                                                                                                <label for="review">review</label>
                                                                                                <textarea type="text" name="reviews" id="reviews" placeholder="Enter Your Reviews" class="form-control"></textarea>
+                                                                                           </div>
+
+                                                                                           <div class="form-group">
+                                                                                            <input type="file" name="image"  placeholder="Enter Your Reviews" class="form-control"/>
                                                                                            </div>
                                            
                                                                                            <div class="modal-footer">
@@ -608,7 +702,7 @@ span.price {
                                                                                        </div>
                                                                                      </form>                                 
                                            
-                                                                                 </div>
+                                                                        
                                                                              </div>
                                                                            </div>
                                                                          </div>

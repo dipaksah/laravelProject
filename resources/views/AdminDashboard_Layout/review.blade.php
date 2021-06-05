@@ -446,6 +446,7 @@
                                           <th><strong>Customer Name</strong></th>
                                           <th><strong>booking_id</strong></th>
                                           <th><strong>Reviews</strong></th>
+                                          <th><strong>Total Star</strong></th>
                                         </tr>
                                       </thead>
                                       <tbody>
@@ -454,6 +455,7 @@
                                             <td>{{ $review->user_id }}</td>
                                             <td>{{ $review->booking_id }}</td>
                                             <td>{{ $review->reviews }}</td>
+                                            <td>{{ $review->star }}</td>
                                             
                                             <td>
   

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 
 class ReviewController extends Controller
 {
+
+    protected $image_dir = "public/images";
     /**
      * Display a listing of the resource.
      *
@@ -37,15 +39,23 @@ class ReviewController extends Controller
      */
     public function store(Request $request)
     {
-        // //dd($request->all());
         $review = new Review();
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $image_name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = base_path('Uploads');
+            $image->move($destinationPath, $image_name);
+            $review->image=$image_name;
+        }
         $user = User::find(Auth::user()->id);
         $booking = $request->booking_id;
         $review->user_id = $user->name;
         $review->booking_id = $booking;
         $review->reviews = $request->reviews;
+        $review->star = $request->star;
         $review->save();
         return redirect('/user_dashboard')->with('success','successfully booked.');
+        
     }
 
     /**

@@ -35,6 +35,10 @@
     .subView{
         color: green;
     }
+
+    .headingServices{
+        text-align: center
+    }
 </style>
 
 <body>
@@ -121,6 +125,124 @@
             </div>
         </div>
 
+        {{-- services --}}
+        <div class="container">
+            <h2 class="headingServices"><b>Services</b></h2>
+            <hr>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <img src="/images/s1.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title"> Room Cleaning </h5>
+                      <p class="card-text"></p>
+                      <a href="#" class="btn btn-primary">More...</a>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <img src="/images/s2.jpg" class="card-img-top" alt="...">
+                    <div class="card-body">
+                      <h5 class="card-title">Bathroom Cleaning</h5>
+                      <p class="card-text"> </p>
+                      <a href="#" class="btn btn-primary">More...</a>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="col-sm-4">
+                <div class="card">
+                    <img src="/images/s3.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h5 class="card-title">Kitchen Cleaning</h5>
+                    <p class="card-text"> </p>
+                    <a href="#" class="btn btn-primary">More...</a>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+        </div>
+<br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="/images/s4.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title"> Curtains Cleaning</h5>
+                          <p class="card-text"></p>
+                          <a href="#" class="btn btn-primary">More...</a>
+                        </div>
+                      </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="/images/s5.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Carpet Cleaning</h5>
+                          <p class="card-text"> </p>
+                          <a href="#" class="btn btn-primary">More...</a>
+                        </div>
+                      </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="/images/s6.jpg" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Laundry</h5>
+                        <p class="card-text"></p>
+                        <a href="#" class="btn btn-primary">More...</a>
+                      </div>
+                    </div>
+                  </div>
+    
+              </div>
+            </div>
+
+            <br>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="/images/s7.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">SEPTIC TANK Cleaning</h5>
+                          <p class="card-text"></p>
+                          <a href="#" class="btn btn-primary">More...</a>
+                        </div>
+                      </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="/images/s8.jpg" class="card-img-top" alt="...">
+                        <div class="card-body">
+                          <h5 class="card-title">Sofa Cleaning</h5>
+                          <p class="card-text"> </p>
+                          <a href="#" class="btn btn-primary">More...</a>
+                        </div>
+                      </div>
+                </div>
+    
+                <div class="col-sm-4">
+                    <div class="card">
+                        <img src="/images/s10.png" class="card-img-top" alt="...">
+                      <div class="card-body">
+                        <h5 class="card-title">Water Tank Cleaning</h5>
+                        <p class="card-text"> </p>
+                        <a href="#" class="btn btn-primary">More...</a>
+                      </div>
+                    </div>
+                  </div>
+    
+              </div>
+            </div>
+        <hr>
 <!-- ***** Contact Us Area Start ***** -->
 <div class="container-fluid jumbotron ">
     <div class="row">
